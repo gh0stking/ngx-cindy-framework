@@ -1,10 +1,8 @@
-@import '../theme/sass/conf/conf';
-
 /*视图框*/
 .router {
-  padding-top: $header-height;
-  padding-right: 15px;
-  margin-left: 165px;
+  padding-top: 70px;
+  padding-right: 10px;
+  margin-left: 175px;
   overflow-x: auto;
   min-width: 1000px;
   min-height: 500px;
@@ -18,7 +16,7 @@
 
 .bars {
   position: absolute;
-  top: $header-height;
+  top: 62px;
   right: 0px;
   z-index: 1100;
   color: #FFFFFF;
@@ -33,13 +31,12 @@
 }
 
 .header {
-  background-color: $header-background-color;
-  height: $header-height;
-  line-height:$header-height;
+  background-color: #0099E6;
+  height: 60px;
+  line-height:60px;
   color: #FFFFFF;
   position: fixed;
   top: 0;
-  left:0;
   z-index: 900;
   width: 100%;
   min-width: 1165px;
@@ -50,7 +47,7 @@
 }
 
 .header .header-li-li {
-  background-color: $header-background-color;
+  background-color: #0099E6;
 }
 
 .header-something-ul {
@@ -65,7 +62,7 @@
   display: inline-block;
   color: #FFFFFF;
   width: 100px;
-  line-height: $header-height;
+  line-height: 60px;
   text-align: center;
   cursor: pointer;
 }

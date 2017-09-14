@@ -1,1 +1,123 @@
-dashbard page
+<div class="ui-g">
+    <div class="ui-g-6">
+        <c-panel title="Input" [toggleable]="true">
+            <div class="ui-g">
+                <label for="">用户名：</label>
+                <c-inputText></c-inputText>
+            </div>
+            <div class="ui-g">
+                <label for="">密　码：</label>
+                <c-password></c-password>
+            </div>
+            <div class="ui-g">
+                <label for="">性　别：</label>
+                <c-radioButton value="sex1" label="男"></c-radioButton>
+                <c-radioButton value="sex2" label="女"></c-radioButton>
+            </div>
+            <div class="ui-g">
+                <label for="">疾　病：</label>
+                <c-checkbox name="pat" value="pat1" label="急性肾小球肾炎"></c-checkbox>
+                <c-checkbox name="pat" value="pat2" label="慢性肾小球肾炎"></c-checkbox>
+                <c-checkbox name="pat" value="pat3" label="隐匿性肾小球肾炎"></c-checkbox>
+            </div>
+            <div class="ui-g">
+                <label for="">住　址：</label>
+                <c-dropdown [options]='cities' [filter]='true' filterBy='label,value.name'></c-dropdown>
+            </div>
+            <div class="ui-g">
+                <label for="">电　话：</label>
+                <c-inputMask mask="(999) 99999999" placeholder="(999) 99999999"></c-inputMask>
+            </div>
+            <div class="ui-g">
+                <label for="">备　注：</label>
+                <c-inputTextArea [rows]="5" [cols]="50" autoResize="true"></c-inputTextArea>
+            </div>
+        </c-panel>
+    </div>
+    <div class="ui-g-6">
+        <c-panel title="Button" [toggleable]="true">
+            <div class="ui-g">
+                <c-button label="primary" class="ui-button-primary"></c-button>
+                <c-button label="secondary" class="ui-button-secondary"></c-button>
+                <c-button label="success" class="ui-button-success"></c-button>
+                <c-button label="info" class="ui-button-info"></c-button>
+                <c-button label="warning" class="ui-button-warning"></c-button>
+                <c-button label="danger" class="ui-button-danger"></c-button>
+            </div>
+            <div class="ui-g">
+                <c-button label="click"></c-button>
+                <c-button label="click" icon="fa-check" iconPos="left"></c-button>
+                <c-button label="click" icon="fa-check" iconPos="right"></c-button>
+                <c-button icon="fa-check"></c-button>
+                <c-button label="click" icon="fa-check" [disabled]='true'></c-button>
+            </div>
+            <div class="ui-g">
+                <c-splitButton label="Save" icon="fa-check" (onClick)="save()" [model]="items"></c-splitButton>
+            </div>
+        </c-panel>
+    </div>
+</div>
+
+<div class="ui-g">
+    <div class="ui-g-6">
+        <c-panel title="Data" [toggleable]="true">
+        </c-panel>
+    </div>
+    <div class="ui-g-6">
+        <c-panel title="Panel" [toggleable]="true">
+
+        </c-panel>
+    </div>
+</div>
+
+<div class="ui-g">
+    <div class="ui-g-6">
+        <c-panel title="Overlay" [toggleable]="true">
+
+        </c-panel>
+    </div>
+    <div class="ui-g-6">
+        <c-panel title="File" [toggleable]="true">
+
+        </c-panel>
+    </div>
+</div>
+
+<div class="ui-g">
+    <div class="ui-g-6">
+        <c-panel title="Menu" [toggleable]="true">
+
+        </c-panel>
+    </div>
+    <div class="ui-g-6">
+        <c-panel title="Charts" [toggleable]="true">
+
+        </c-panel>
+    </div>
+</div>
+
+<div class="ui-g">
+    <div class="ui-g-6">
+        <c-panel title="Messages" [toggleable]="true">
+
+        </c-panel>
+    </div>
+    <div class="ui-g-6">
+        <c-panel title="Multimedia" [toggleable]="true">
+
+        </c-panel>
+    </div>
+</div>
+
+<div class="ui-g">
+    <div class="ui-g-6">
+        <c-panel title="DragDrop" [toggleable]="true">
+
+        </c-panel>
+    </div>
+    <div class="ui-g-6">
+        <c-panel title="Misc" [toggleable]="true">
+
+        </c-panel>
+    </div>
+</div>

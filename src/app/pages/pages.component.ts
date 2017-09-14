@@ -13,17 +13,17 @@ import { PAGES_MENU } from './pages.menu';
                 left: '0px'
             })),
             state('active', style({
-                left: '-143px'
+                left: '-120px'
             })),
             transition('inactive => active', animate('200ms ease-in')),
             transition('active => inactive', animate('200ms ease-out'))
         ]),
         trigger('routerState', [
             state('inactive', style({
-                marginLeft: '180px'
+                marginLeft: '170px'
             })),
             state('active', style({
-                marginLeft: '40px'
+                marginLeft: '50px'
             })),
             transition('inactive => active', animate('200ms ease-in')),
             transition('active => inactive', animate('200ms ease-out'))
@@ -33,7 +33,7 @@ import { PAGES_MENU } from './pages.menu';
                 left: '16px'
             })),
             state('active', style({
-                left: '150px'
+                left: '133px'
             })),
             transition('inactive => active', animate('200ms ease-in')),
             transition('active => inactive', animate('200ms ease-out'))
