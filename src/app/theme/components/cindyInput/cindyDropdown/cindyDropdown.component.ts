@@ -1,26 +1,44 @@
-import { Component, Input, forwardRef, Output, EventEmitter } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Component, Input, Output, EventEmitter, ViewChild, Optional, Inject } from '@angular/core';
+import { ElementBase } from '../../common/form';
 
-export const CUSTOM_DROPDOWN_VALUE_ACCESSOR: any = {
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => CindyDropdown),
-    multi: true
-};
+import {
+    NgModel,
+    NG_VALIDATORS,
+    NG_VALUE_ACCESSOR,
+    NG_ASYNC_VALIDATORS,
+} from '@angular/forms';
 
 @Component({
     selector: 'c-dropdown',
     template: `
-        <p-dropdown [options]="options" [(ngModel)]="selectedValue" [filter]="filter" (onChange)="onChangeEvent()" filterBy='{{filterBy}}'>
+        <p-dropdown 
+            [options]="options" 
+            [(ngModel)]="val" 
+            [filter]="filter" 
+            (onChange)="onChangeEvent()" 
+            filterBy='{{filterBy}}'>
             <ng-content></ng-content>
-        </p-dropdown>`,
-    providers: [CUSTOM_DROPDOWN_VALUE_ACCESSOR]
+        </p-dropdown>
+    `,
+    providers: [{
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: CindyDropdown,
+        multi: true
+    }]
 })
-export class CindyDropdown {
+export class CindyDropdown extends ElementBase<string>{
+    @ViewChild(NgModel) model: NgModel;
     @Input() options: Array<any> = null;
     @Input() filter: boolean = false;
     @Input() filterBy: string;
     @Output() onChange: EventEmitter<any> = new EventEmitter();
-    selectedValue: string;
+
+    constructor(
+        @Optional() @Inject(NG_VALIDATORS) validators: Array<any>,
+        @Optional() @Inject(NG_VALIDATORS) asyncValidators: Array<any>,
+    ) {
+        super(validators, asyncValidators);
+    }
 
     onChangeEvent() {
         this.onChange.emit();

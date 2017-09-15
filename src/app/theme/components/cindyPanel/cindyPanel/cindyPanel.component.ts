@@ -3,10 +3,15 @@ import { Component, Input } from '@angular/core';
 @Component({
     selector: 'c-panel',
     template: `
-    <p-panel header="{{title}}" [toggleable]="toggleable">
-        <ng-content></ng-content>
-    </p-panel>
-    `
+    <div class="c-panel">
+        <p-panel 
+            header="{{title}}" 
+            [toggleable]="toggleable">
+            <ng-content></ng-content>
+        </p-panel>
+    </div>
+    `,
+    styleUrls: ['./cindyPanel.component.scss']
 })
 export class CindyPanel {
     public _title: string;

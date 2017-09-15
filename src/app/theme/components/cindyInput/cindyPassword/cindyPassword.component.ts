@@ -1,60 +1,35 @@
-import { Component, forwardRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Component, ViewChild, Optional, Inject, Input } from '@angular/core';
+import { ElementBase } from '../../common/form';
 
-const noop = () => { };
-
-export const CUSTOM_INPUT_PASSWORD_VALUE_ACCESSOR: any = {
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => CindyPassword),
-    multi: true
-};
+import {
+    NgModel,
+    NG_VALIDATORS,
+    NG_VALUE_ACCESSOR,
+    NG_ASYNC_VALIDATORS,
+} from '@angular/forms';
 
 @Component({
     selector: 'c-password',
-    template: `<input type="password" pPassword [(ngModel)]='value' (blur)="onBlur()" />`,
-    providers: [CUSTOM_INPUT_PASSWORD_VALUE_ACCESSOR]
+    template: `
+        <input 
+            pPassword 
+            type="password" 
+            [(ngModel)]='val' 
+        />
+    `,
+    providers: [{
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: CindyPassword,
+        multi: true
+    }]
 })
-export class CindyPassword {
-    //The internal data model
-    innerValue: any = '';
+export class CindyPassword extends ElementBase<string>{
+    @ViewChild(NgModel) model: NgModel;
 
-    //Placeholders for the callbacks which are later providesd
-    //by the Control Value Accessor
-    onTouchedCallback: () => void = noop;
-    onChangeCallback: (_: any) => void = noop;
-
-    //get accessor
-    get value(): any {
-        return this.innerValue;
-    };
-
-    //set accessor including call the onchange callback
-    set value(v: any) {
-        if (v !== this.innerValue) {
-            this.innerValue = v;
-            this.onChangeCallback(v);
-        }
-    }
-
-    //Set touched on blur
-    onBlur() {
-        this.onTouchedCallback();
-    }
-
-    //From ControlValueAccessor interface
-    writeValue(value: any) {
-        if (value !== this.innerValue) {
-            this.innerValue = value;
-        }
-    }
-
-    //From ControlValueAccessor interface
-    registerOnChange(fn: any) {
-        this.onChangeCallback = fn;
-    }
-
-    //From ControlValueAccessor interface
-    registerOnTouched(fn: any) {
-        this.onTouchedCallback = fn;
+    constructor(
+        @Optional() @Inject(NG_VALIDATORS) validators: Array<any>,
+        @Optional() @Inject(NG_VALIDATORS) asyncValidators: Array<any>,
+    ) {
+        super(validators, asyncValidators);
     }
 }

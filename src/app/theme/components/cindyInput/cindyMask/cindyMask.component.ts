@@ -1,20 +1,39 @@
-import { Component, forwardRef, Input } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, ViewChild, Optional, Inject, Input } from '@angular/core';
+import { ElementBase } from '../../common/form';
 
-export const CINDY_INPUT_MASK_VALUE_ACCESSOR: any = {
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => CindyMask),
-    multi: true
-};
+import {
+    NgModel,
+    NG_VALIDATORS,
+    NG_VALUE_ACCESSOR,
+    NG_ASYNC_VALIDATORS,
+} from '@angular/forms';
 
 @Component({
     selector: 'c-inputMask',
-    template: `<p-inputMask [(ngModel)]="value" mask="{{mask}}" slotChar="{{slotChar}}" type="{{type}}"></p-inputMask>`,
-    providers: [CINDY_INPUT_MASK_VALUE_ACCESSOR]
+    template: `
+        <p-inputMask 
+            [(ngModel)]="val" 
+            mask="{{mask}}" 
+            slotChar="{{slotChar}}" 
+            type="{{type}}">
+        </p-inputMask>
+    `,
+    providers: [{
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: CindyMask,
+        multi: true
+    }]
 })
-export class CindyMask {
-    value: string;
+export class CindyMask extends ElementBase<string>{
+    @ViewChild(NgModel) model: NgModel;
     @Input() mask: string;
     @Input() slotChar: string = '-';
     @Input() type: string = 'text';
+
+    constructor(
+        @Optional() @Inject(NG_VALIDATORS) validators: Array<any>,
+        @Optional() @Inject(NG_VALIDATORS) asyncValidators: Array<any>,
+    ) {
+        super(validators, asyncValidators);
+    }
 }

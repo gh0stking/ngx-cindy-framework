@@ -1,25 +1,39 @@
-import { Component, forwardRef, Input, Output, EventEmitter } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Component, ViewChild, Optional, Inject, Input } from '@angular/core';
+import { ElementBase } from '../../common/form';
 
-export const CINDY_INPUT_TEXTAREA_VALUE_ACCESSOR: any = {
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => CindyInputTextArea),
-    multi: true
-};
+import {
+    NgModel,
+    NG_VALIDATORS,
+    NG_VALUE_ACCESSOR,
+    NG_ASYNC_VALIDATORS,
+} from '@angular/forms';
 
 @Component({
     selector: 'c-inputTextArea',
-    template: `<textarea [rows]="rows" [cols]="cols" pInputTextarea autoResize="{{autoResize}}" [(ngModel)]='value'></textarea>`,
-    providers: [CINDY_INPUT_TEXTAREA_VALUE_ACCESSOR]
+    template: `
+        <textarea pInputTextarea
+            [rows]="rows" 
+            [cols]="cols" 
+            autoResize="{{autoResize}}" 
+            [(ngModel)]='val'>
+        </textarea>
+    `,
+    providers: [{
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: CindyInputTextArea,
+        multi: true
+    }]
 })
-export class CindyInputTextArea {
+export class CindyInputTextArea extends ElementBase<string>{
+    @ViewChild(NgModel) model: NgModel;
     @Input() rows: number = 5;
     @Input() cols: number = 30;
     @Input() autoResize: boolean = false;
-    @Output() onResize: EventEmitter<any> = new EventEmitter();
-    value: string;
 
-    onResizeEvent() {
-        this.onResize.emit();
+    constructor(
+        @Optional() @Inject(NG_VALIDATORS) validators: Array<any>,
+        @Optional() @Inject(NG_VALIDATORS) asyncValidators: Array<any>,
+    ) {
+        super(validators, asyncValidators);
     }
 }

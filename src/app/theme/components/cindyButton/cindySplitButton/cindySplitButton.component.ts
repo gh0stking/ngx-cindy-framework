@@ -3,7 +3,15 @@ import { CindyMenuModel } from '../../../models/cindyMenuItem';
 
 @Component({
     selector: 'c-splitButton',
-    template: `<p-splitButton label="{{label}}" icon="{{icon}}" [model]="model" styleClass="{{styleClass}}" (onClick)='onClickEvent()'></p-splitButton>`
+    template: `
+        <p-splitButton 
+            label="{{label}}" 
+            icon="{{icon}}" 
+            [model]="model" 
+            styleClass="{{styleClass}}" 
+            (onClick)='onClickEvent()'>
+        </p-splitButton>
+    `
 })
 export class CindySplitButton {
     @Input() label: string;

@@ -1,51 +1,39 @@
-import { Component, forwardRef, Input } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Component, ViewChild, Optional, Inject, Input } from '@angular/core';
+import { ElementBase } from '../../common/form';
 
-const noop = () => { };
-
-export const CINDY_INPUT_RADIO_VALUE_ACCESSOR: any = {
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => CindyRadioButton),
-    multi: true
-};
+import {
+    NgModel,
+    NG_VALIDATORS,
+    NG_VALUE_ACCESSOR,
+    NG_ASYNC_VALIDATORS,
+} from '@angular/forms';
 
 @Component({
     selector: 'c-radioButton',
-    template: `<p-radioButton name="{{name}}" value="{{value}}" label='{{label}}' [(ngModel)]="value"></p-radioButton>`,
-    providers: [CINDY_INPUT_RADIO_VALUE_ACCESSOR]
+    template: `
+        <p-radioButton 
+            name="{{name}}" 
+            value="{{value}}" 
+            label='{{label}}' 
+            [(ngModel)]="val">
+        </p-radioButton>
+    `,
+    providers: [{
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: CindyRadioButton,
+        multi: true
+    }]
 })
-export class CindyRadioButton {
-    innerValue: any = '';
-    public _label: string;
-    public _name: string;
-    onChangeCallback: (_: any) => void = noop;
+export class CindyRadioButton extends ElementBase<boolean>{
+    @ViewChild(NgModel) model: NgModel;
+    @Input() name: string;
+    @Input() value: any;
+    @Input() label: string;
 
-    @Input() get name(): string {
-        return this._name;
-    }
-
-    set name(val: string) {
-        this._name = val;
-    }
-
-    @Input() get label(): string {
-        return this._label;
-    }
-
-    set label(val: string) {
-        this._label = val;
-    }
-
-    //get accessor
-    get value(): any {
-        return this.innerValue;
-    };
-
-    //set accessor including call the onchange callback
-    set value(v: any) {
-        if (v !== this.innerValue) {
-            this.innerValue = v;
-            this.onChangeCallback(v);
-        }
+    constructor(
+        @Optional() @Inject(NG_VALIDATORS) validators: Array<any>,
+        @Optional() @Inject(NG_VALIDATORS) asyncValidators: Array<any>,
+    ) {
+        super(validators, asyncValidators);
     }
 }

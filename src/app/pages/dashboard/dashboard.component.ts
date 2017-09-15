@@ -10,6 +10,7 @@ export class DashboardComponent {
     items: Array<any>;
     patients: Array<any>;
     patientColumns: Array<any>;
+    user: any = {};
 
     constructor() {
         this.getCities();

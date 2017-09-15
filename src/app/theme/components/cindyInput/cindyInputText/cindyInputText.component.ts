@@ -1,62 +1,33 @@
-import { Component, forwardRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Component, ViewChild, Optional, Inject } from '@angular/core';
+import { ElementBase } from '../../common/form';
 
-const noop = () => { };
-
-export const CINDY_INPUT_TEXT_VALUE_ACCESSOR: any = {
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => CindyInputText),
-    multi: true
-};
+import {
+    NgModel,
+    NG_VALIDATORS,
+    NG_VALUE_ACCESSOR,
+    NG_ASYNC_VALIDATORS,
+} from '@angular/forms';
 
 @Component({
     selector: 'c-inputText',
-    template: `<input type="text" pInputText [(ngModel)]='value' (blur)="onBlur()" />`,
-    providers: [CINDY_INPUT_TEXT_VALUE_ACCESSOR]
+    template: `
+        <input type="text" 
+            pInputText 
+            [(ngModel)]='val' />
+    `,
+    providers: [{
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: CindyInputText,
+        multi: true
+    }]
 })
-export class CindyInputText {
+export class CindyInputText extends ElementBase<string>{
+    @ViewChild(NgModel) model: NgModel;
 
-    //The internal data model
-    innerValue: any = '';
-
-    //Placeholders for the callbacks which are later providesd
-    //by the Control Value Accessor
-    onTouchedCallback: () => void = noop;
-    onChangeCallback: (_: any) => void = noop;
-
-    //get accessor
-    get value(): any {
-        return this.innerValue;
-    };
-
-    //set accessor including call the onchange callback
-    set value(v: any) {
-        if (v !== this.innerValue) {
-            this.innerValue = v;
-            this.onChangeCallback(v);
-        }
+    constructor(
+        @Optional() @Inject(NG_VALIDATORS) validators: Array<any>,
+        @Optional() @Inject(NG_VALIDATORS) asyncValidators: Array<any>,
+    ) {
+        super(validators, asyncValidators);
     }
-
-    //Set touched on blur
-    onBlur() {
-        this.onTouchedCallback();
-    }
-
-    //From ControlValueAccessor interface
-    writeValue(value: any) {
-        if (value !== this.innerValue) {
-            this.innerValue = value;
-        }
-    }
-
-    //From ControlValueAccessor interface
-    registerOnChange(fn: any) {
-        this.onChangeCallback = fn;
-    }
-
-    //From ControlValueAccessor interface
-    registerOnTouched(fn: any) {
-        this.onTouchedCallback = fn;
-    }
-
 }
