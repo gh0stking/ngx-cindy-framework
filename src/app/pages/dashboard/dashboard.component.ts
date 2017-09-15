@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CindyConfirmationService } from '../../theme/services/cindyConfirmDialog/cindyConfirmation.service';
 
 @Component({
     selector: 'dashboard',
@@ -12,7 +13,9 @@ export class DashboardComponent {
     patientColumns: Array<any>;
     user: any = {};
 
-    constructor() {
+    constructor(
+        private confirmService: CindyConfirmationService,
+    ) {
         this.getCities();
         this.getItems();
     }
@@ -42,6 +45,23 @@ export class DashboardComponent {
             { label: 'Angular.io', icon: 'fa-link', url: 'http://angular.io' },
             { label: 'Theming', icon: 'fa-paint-brush', routerLink: ['/theming'] }
         ];
+    }
+
+    confirm() {
+        this.confirmService.confirm({
+            header: '提示',
+            message: 'Are you sure that you want to perform this action?',
+            accept: () => {
+                console.log('clicked accept button.');
+            },
+            reject: () => {
+                console.log('clicked reject button.');
+            }
+        });
+    }
+
+    delete() {
+
     }
 
 }

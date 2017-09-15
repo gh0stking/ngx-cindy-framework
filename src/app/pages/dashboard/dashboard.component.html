@@ -75,7 +75,8 @@
         </c-panel>
 
         <c-panel title="Overlay" [toggleable]="true">
-            Overlay
+            <c-button label="confirm" icon="fa fa-check" iconPos="left" (click)="confirm()"></c-button>
+            <c-button label="delete" icon="fa fa-trash" iconPos="left" (click)="delete()"></c-button>
         </c-panel>
 
         <c-panel title="File" [toggleable]="true">
@@ -107,3 +108,5 @@
         </c-panel>
     </div>
 </div>
+
+<c-confirmDialog></c-confirmDialog>

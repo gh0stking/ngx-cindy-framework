@@ -76,6 +76,10 @@ import {
 } from 'primeng/primeng';
 
 import {
+  ConfirmationService,
+} from 'primeng/primeng';
+
+import {
   CindyButton,
   CindySplitButton,
   CindyBar,
@@ -161,6 +165,10 @@ import {
   CindyEqualPasswordsValidator,
 } from './validators';
 
+import {
+  CindyConfirmationService,
+} from './services';
+
 
 const CINDY_COMPONENTS = [
   CindyButton,
@@ -243,9 +251,92 @@ const CINDY_COMPONENTS = [
   CindyToolbar,
 ];
 
-const NGA_VALIDATORS = [
+const CINDY_VALIDATORS = [
   CindyEmailValidator,
   CindyEqualPasswordsValidator,
+];
+
+const CINDY_SERVICES = [
+  CindyConfirmationService,
+];
+
+const PRIMENG_MODULES = [
+  ButtonModule,
+  RouterModule,
+  FormsModule,
+  AutoCompleteModule,
+  CalendarModule,
+  CheckboxModule,
+  ChipsModule,
+  ColorPickerModule,
+  DropdownModule,
+  EditorModule,
+  InputSwitchModule,
+  InputTextModule,
+  InputTextareaModule,
+  ListboxModule,
+  InputMaskModule,
+  MultiSelectModule,
+  PasswordModule,
+  RadioButtonModule,
+  RatingModule,
+  SliderModule,
+  SpinnerModule,
+  SelectButtonModule,
+  ToggleButtonModule,
+  TriStateCheckboxModule,
+  ButtonModule,
+  SplitButtonModule,
+  CarouselModule,
+  DataGridModule,
+  DataListModule,
+  DataScrollerModule,
+  DataTableModule,
+  SharedModule,
+  OrganizationChartModule,
+  TreeModule,
+  OrderListModule,
+  GMapModule,
+  PaginatorModule,
+  PickListModule,
+  ScheduleModule,
+  TreeTableModule,
+  AccordionModule,
+  FieldsetModule,
+  PanelModule,
+  TabViewModule,
+  ToolbarModule,
+  ConfirmDialogModule,
+  DialogModule,
+  LightboxModule,
+  OverlayPanelModule,
+  TooltipModule,
+  FileUploadModule,
+  MenuModule,
+  BreadcrumbModule,
+  ContextMenuModule,
+  MegaMenuModule,
+  MenubarModule,
+  PanelMenuModule,
+  SlideMenuModule,
+  StepsModule,
+  TabMenuModule,
+  TieredMenuModule,
+  MessagesModule,
+  GrowlModule,
+  GalleriaModule,
+  DragDropModule,
+  DeferModule,
+  BlockUIModule,
+  CaptchaModule,
+  InplaceModule,
+  ProgressBarModule,
+  CodeHighlighterModule,
+  TerminalModule,
+];
+
+const PRIMENG_SERVICES = [
+  ConfirmationService,
 ];
 
 
@@ -256,82 +347,11 @@ const NGA_VALIDATORS = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    ButtonModule,
-    RouterModule,
-    FormsModule,
-    AutoCompleteModule,
-    CalendarModule,
-    CheckboxModule,
-    ChipsModule,
-    ColorPickerModule,
-    DropdownModule,
-    EditorModule,
-    InputSwitchModule,
-    InputTextModule,
-    InputTextareaModule,
-    ListboxModule,
-    InputMaskModule,
-    MultiSelectModule,
-    PasswordModule,
-    RadioButtonModule,
-    RatingModule,
-    SliderModule,
-    SpinnerModule,
-    SelectButtonModule,
-    ToggleButtonModule,
-    TriStateCheckboxModule,
-    ButtonModule,
-    SplitButtonModule,
-    CarouselModule,
-    DataGridModule,
-    DataListModule,
-    DataScrollerModule,
-    DataTableModule,
-    SharedModule,
-    OrganizationChartModule,
-    TreeModule,
-    OrderListModule,
-    GMapModule,
-    PaginatorModule,
-    PickListModule,
-    ScheduleModule,
-    TreeTableModule,
-    AccordionModule,
-    FieldsetModule,
-    PanelModule,
-    TabViewModule,
-    ToolbarModule,
-    ConfirmDialogModule,
-    DialogModule,
-    LightboxModule,
-    OverlayPanelModule,
-    TooltipModule,
-    FileUploadModule,
-    MenuModule,
-    BreadcrumbModule,
-    ContextMenuModule,
-    MegaMenuModule,
-    MenubarModule,
-    PanelMenuModule,
-    SlideMenuModule,
-    StepsModule,
-    TabMenuModule,
-    TieredMenuModule,
-    MessagesModule,
-    GrowlModule,
-    GalleriaModule,
-    DragDropModule,
-    DeferModule,
-    BlockUIModule,
-    CaptchaModule,
-    InplaceModule,
-    ProgressBarModule,
-    CodeHighlighterModule,
-    TerminalModule,
+    PRIMENG_MODULES,
   ],
   exports: [
+    RouterModule,
     ...CINDY_COMPONENTS,
-    RouterModule
   ]
 })
 export class CindyModule {
@@ -339,7 +359,9 @@ export class CindyModule {
     return <ModuleWithProviders>{
       ngModule: CindyModule,
       providers: [
-        ...NGA_VALIDATORS,
+        ...CINDY_VALIDATORS,
+        ...PRIMENG_SERVICES,
+        ...CINDY_SERVICES,
       ]
     };
   }
