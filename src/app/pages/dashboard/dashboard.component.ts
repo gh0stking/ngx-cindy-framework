@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
     polarAreaData: any;
     radarData: any;
     msgs: any = [];
+    growls: any = [];
 
     constructor(
         private messageService: CindyMessagesService,
@@ -278,8 +279,14 @@ export class DashboardComponent implements OnInit {
     }
 
     showMessages() {
+        this.msgs = [];
         // this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'Via MessageService' });
         this.msgs.push({ severity: 'success', summary: 'Success Message', detail: 'Order submitted' });
+    }
+
+    showGrowl() {
+        this.growls = [];
+        this.growls.push({ severity: 'success', summary: 'Success Message', detail: 'Order submitted' });
     }
 
 

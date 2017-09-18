@@ -101,7 +101,9 @@
 
         <c-panel title="Messages" [toggleable]="true">
             <c-button label="show messages" (click)="showMessages()"></c-button>
-            <c-messages [(value)]="msgs"></c-messages>            
+            <c-button label="show growl" (click)="showGrowl()"></c-button>
+            <c-messages [(value)]="msgs"></c-messages>
+            <c-growl [(value)]="growls"></c-growl>
         </c-panel>
 
         <c-panel title="Multimedia" [toggleable]="true">
