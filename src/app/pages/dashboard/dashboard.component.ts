@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CindyConfirmationService } from '../../theme/services/cindyConfirmDialog/cindyConfirmation.service';
 
 @Component({
@@ -6,18 +6,173 @@ import { CindyConfirmationService } from '../../theme/services/cindyConfirmDialo
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
     cities: Array<any>;
     items: Array<any>;
     patients: Array<any>;
     patientColumns: Array<any>;
     user: any = {};
+    display: boolean = false;
+    childDialogDisplay = false;
+    contextMenus: Array<any>;
+    barData: any;
+    lineData: any;
+    pieData: any;
+    doughnutData: any;
+    polarAreaData: any;
+    radarData: any;
 
     constructor(
         private confirmService: CindyConfirmationService,
-    ) {
+    ) { }
+
+    ngOnInit() {
         this.getCities();
         this.getItems();
+        this.getContextMenus();
+        this.getBarData();
+        this.getLineData();
+        this.getPieData();
+        this.getDoughnutData();
+        this.getPolarData();
+        this.getRadarData();
+    }
+
+    getBarData() {
+        this.barData = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [
+                {
+                    label: 'My First dataset',
+                    backgroundColor: '#42A5F5',
+                    borderColor: '#1E88E5',
+                    data: [65, 59, 80, 81, 56, 55, 40]
+                },
+                {
+                    label: 'My Second dataset',
+                    backgroundColor: '#9CCC65',
+                    borderColor: '#7CB342',
+                    data: [28, 48, 40, 19, 86, 27, 90]
+                }
+            ]
+        }
+    }
+
+    getLineData() {
+        this.lineData = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [
+                {
+                    label: 'First Dataset',
+                    data: [65, 59, 80, 81, 56, 55, 40],
+                    fill: false,
+                    borderColor: '#4bc0c0'
+                },
+                {
+                    label: 'Second Dataset',
+                    data: [28, 48, 40, 19, 86, 27, 90],
+                    fill: false,
+                    borderColor: '#565656'
+                }
+            ]
+        }
+    }
+
+    getPieData() {
+        this.pieData = {
+            labels: ['A', 'B', 'C'],
+            datasets: [
+                {
+                    data: [300, 50, 100],
+                    backgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56"
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56"
+                    ]
+                }]
+        };
+    }
+
+    getDoughnutData() {
+        this.doughnutData = {
+            labels: ['A', 'B', 'C'],
+            datasets: [
+                {
+                    data: [300, 50, 100],
+                    backgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56"
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF6384",
+                        "#36A2EB",
+                        "#FFCE56"
+                    ]
+                }]
+        };
+    }
+
+    getPolarData() {
+        this.polarAreaData = {
+            datasets: [{
+                data: [
+                    11,
+                    16,
+                    7,
+                    3,
+                    14
+                ],
+                backgroundColor: [
+                    "#FF6384",
+                    "#4BC0C0",
+                    "#FFCE56",
+                    "#E7E9ED",
+                    "#36A2EB"
+                ],
+                label: 'My dataset'
+            }],
+            labels: [
+                "Red",
+                "Green",
+                "Yellow",
+                "Grey",
+                "Blue"
+            ]
+        }
+    }
+
+    getRadarData() {
+        this.radarData = {
+            labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
+            datasets: [
+                {
+                    label: 'My First dataset',
+                    backgroundColor: 'rgba(179,181,198,0.2)',
+                    borderColor: 'rgba(179,181,198,1)',
+                    pointBackgroundColor: 'rgba(179,181,198,1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(179,181,198,1)',
+                    data: [65, 59, 90, 81, 56, 55, 40]
+                },
+                {
+                    label: 'My Second dataset',
+                    backgroundColor: 'rgba(255,99,132,0.2)',
+                    borderColor: 'rgba(255,99,132,1)',
+                    pointBackgroundColor: 'rgba(255,99,132,1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(255,99,132,1)',
+                    data: [28, 48, 40, 19, 96, 27, 100]
+                }
+            ]
+        };
     }
 
     getCities() {
@@ -50,18 +205,75 @@ export class DashboardComponent {
     confirm() {
         this.confirmService.confirm({
             header: '提示',
-            message: 'Are you sure that you want to perform this action?',
+            message: '保存成功！',
+            rejectVisible: false,
             accept: () => {
-                console.log('clicked accept button.');
-            },
-            reject: () => {
-                console.log('clicked reject button.');
+                console.log('点击了确定按钮');
             }
         });
     }
 
     delete() {
-
+        this.confirmService.confirm({
+            header: '提示',
+            message: '确定要删除吗？',
+            rejectVisible: true,
+            accept: () => {
+                console.log('点击了确定按钮');
+            },
+            reject: () => {
+                console.log('点击了取消按钮');
+            }
+        });
     }
+
+    showDialog() {
+        this.display = true;
+    }
+
+    save() {
+        this.display = false;
+        this.confirm();
+    }
+
+    cancel() {
+        this.display = false;
+    }
+
+    getContextMenus() {
+        this.contextMenus = [
+            {
+                label: 'File',
+                items: [{
+                    label: 'New',
+                    icon: 'fa-plus',
+                    items: [
+                        { label: 'Project' },
+                        { label: 'Other' },
+                    ]
+                },
+                { label: 'Open' },
+                { label: 'Quit' }
+                ]
+            },
+            {
+                label: 'Edit',
+                icon: 'fa-edit',
+                items: [
+                    { label: 'Undo', icon: 'fa-mail-forward' },
+                    { label: 'Redo', icon: 'fa-mail-reply' }
+                ]
+            },
+            {
+                label: 'Save',
+                icon: 'fa-check',
+                command: () => {
+                    console.log('点击了save按钮');
+                }
+            }
+        ];
+    }
+
+
 
 }

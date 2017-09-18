@@ -29,10 +29,10 @@ export class CindyConfirmDialog {
     @Input() message: string;
     @Input() key: string;
     @Input() icon: string;
-    @Input() acceptLabel: string = 'Yes';
+    @Input() acceptLabel: string = '确定';
     @Input() acceptIcon: string = 'fa-check';
     @Input() acceptVisible: boolean = true;
-    @Input() rejectLabel: string = 'No';
+    @Input() rejectLabel: string = '取消';
     @Input() rejectIcon: string = 'fa-close';
     @Input() rejectVisible: boolean = true;
     @Input() width: number = 300;

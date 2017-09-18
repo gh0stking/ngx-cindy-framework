@@ -77,6 +77,7 @@
         <c-panel title="Overlay" [toggleable]="true">
             <c-button label="confirm" icon="fa fa-check" iconPos="left" (click)="confirm()"></c-button>
             <c-button label="delete" icon="fa fa-trash" iconPos="left" (click)="delete()"></c-button>
+            <c-button label="show dialog" (click)="showDialog()"></c-button>
         </c-panel>
 
         <c-panel title="File" [toggleable]="true">
@@ -84,11 +85,18 @@
         </c-panel>
 
         <c-panel title="Menu" [toggleable]="true">
-            Menu
+            <img #img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" width="270" height="129"
+                alt="百度" />
+            <c-contextMenu [target]="img" [model]="contextMenus"></c-contextMenu>
         </c-panel>
 
         <c-panel title="Charts" [toggleable]="true">
-            Menu
+            <c-chart type="bar" [data]="barData"></c-chart>
+            <c-chart type="line" [data]="lineData"></c-chart>
+            <c-chart type="pie" [data]="pieData"></c-chart>
+            <c-chart type="doughnut" [data]="doughnutData"></c-chart>
+            <c-chart type="polarArea" [data]="polarAreaData"></c-chart>
+            <c-chart type="radar" [data]="radarData"></c-chart>
         </c-panel>
 
         <c-panel title="Messages" [toggleable]="true">
@@ -110,3 +118,31 @@
 </div>
 
 <c-confirmDialog></c-confirmDialog>
+
+<c-dialog header="新增患者" [(visible)]="display" modal="modal" width="1024" height="768" [responsive]="true">
+    <c-content>
+        <p>The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding. His
+            beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
+            Through Michael's life the nature of the family business becomes clear. The business of the family is just like
+            the head of the family, kind and benevolent to those who give respect, but given to ruthless violence whenever
+            anything stands against the good of the family.</p>
+    </c-content>
+    <c-footer>
+        <c-button label="二级弹窗" icon="fa fa-car" (click)="childDialogDisplay=true"></c-button>
+        <c-button label="保存" icon="fa fa-save" (click)="save()"></c-button>
+        <c-button label="取消" icon="fa fa-window-close" (click)="cancel()"></c-button>
+    </c-footer>
+</c-dialog>
+
+<c-dialog header="二级弹窗" [(visible)]="childDialogDisplay" modal="modal" width="800" height="600" [responsive]="true">
+    <c-content>
+        <p>The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding. His
+            beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
+            Through Michael's life the nature of the family business becomes clear. The business of the family is just like
+            the head of the family, kind and benevolent to those who give respect, but given to ruthless violence whenever
+            anything stands against the good of the family.</p>
+    </c-content>
+    <c-footer>
+        <c-button label="退出" icon="fa fa-window-close" (click)="childDialogDisplay=false"></c-button>
+    </c-footer>
+</c-dialog>

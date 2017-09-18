@@ -11,3 +11,4 @@ export * from './cindyMultimedia';
 export * from './cindyOverlay';
 export * from './cindyPageTop';
 export * from './cindyPanel';
+export * from './common';

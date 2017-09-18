@@ -62,6 +62,7 @@ import {
   StepsModule,
   TabMenuModule,
   TieredMenuModule,
+  ChartModule,
   MessagesModule,
   GrowlModule,
   GalleriaModule,
@@ -82,12 +83,7 @@ import {
 import {
   CindyButton,
   CindySplitButton,
-  CindyBar,
-  CindyDoughnut,
-  CindyLine,
-  CindyPie,
-  CindyPolarArea,
-  CindyRadar,
+  CindyChart,
   CindyCarousel,
   CindyDataGrid,
   CindyDataList,
@@ -150,7 +146,6 @@ import {
   CindyDialog,
   CindyLightbox,
   CindyOverlayPanel,
-  CindyTooltip,
   CindyPageTop,
   CindyAccordion,
   CindyFieldset,
@@ -158,7 +153,14 @@ import {
   CindyPanel,
   CindyTabView,
   CindyToolbar,
+  CindyHeader,
+  CindyFooter,
+  CindyContent,
 } from './components';
+
+import {
+  CindyTooltip,
+} from './directives';
 
 import {
   CindyEmailValidator,
@@ -173,12 +175,7 @@ import {
 const CINDY_COMPONENTS = [
   CindyButton,
   CindySplitButton,
-  CindyBar,
-  CindyDoughnut,
-  CindyLine,
-  CindyPie,
-  CindyPolarArea,
-  CindyRadar,
+  CindyChart,
   CindyCarousel,
   CindyDataGrid,
   CindyDataList,
@@ -241,7 +238,6 @@ const CINDY_COMPONENTS = [
   CindyDialog,
   CindyLightbox,
   CindyOverlayPanel,
-  CindyTooltip,
   CindyPageTop,
   CindyAccordion,
   CindyFieldset,
@@ -249,6 +245,13 @@ const CINDY_COMPONENTS = [
   CindyPanel,
   CindyTabView,
   CindyToolbar,
+  CindyHeader,
+  CindyFooter,
+  CindyContent,
+];
+
+const CINDY_DIRECTIVES = [
+  CindyTooltip,
 ];
 
 const CINDY_VALIDATORS = [
@@ -322,6 +325,7 @@ const PRIMENG_MODULES = [
   StepsModule,
   TabMenuModule,
   TieredMenuModule,
+  ChartModule,
   MessagesModule,
   GrowlModule,
   GalleriaModule,
@@ -342,6 +346,7 @@ const PRIMENG_SERVICES = [
 
 @NgModule({
   declarations: [
+    ...CINDY_DIRECTIVES,
     ...CINDY_COMPONENTS,
   ],
   imports: [
@@ -351,6 +356,7 @@ const PRIMENG_SERVICES = [
   ],
   exports: [
     RouterModule,
+    ...CINDY_DIRECTIVES,
     ...CINDY_COMPONENTS,
   ]
 })
