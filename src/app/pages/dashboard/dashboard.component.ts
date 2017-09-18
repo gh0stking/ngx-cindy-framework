@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CindyConfirmationService } from '../../theme/services/cindyConfirmDialog/cindyConfirmation.service';
+import { CindyMessagesService } from '../../theme/services/cindyMessages/cindyMessages.service';
 
 @Component({
     selector: 'dashboard',
@@ -21,8 +22,10 @@ export class DashboardComponent implements OnInit {
     doughnutData: any;
     polarAreaData: any;
     radarData: any;
+    msgs: any = [];
 
     constructor(
+        private messageService: CindyMessagesService,
         private confirmService: CindyConfirmationService,
     ) { }
 
@@ -272,6 +275,11 @@ export class DashboardComponent implements OnInit {
                 }
             }
         ];
+    }
+
+    showMessages() {
+        // this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'Via MessageService' });
+        this.msgs.push({ severity: 'success', summary: 'Success Message', detail: 'Order submitted' });
     }
 
 

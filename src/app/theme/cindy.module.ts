@@ -80,6 +80,8 @@ import {
   ConfirmationService,
 } from 'primeng/primeng';
 
+import { MessageService } from 'primeng/components/common/messageservice';
+
 import {
   CindyButton,
   CindySplitButton,
@@ -169,6 +171,7 @@ import {
 
 import {
   CindyConfirmationService,
+  CindyMessagesService,
 } from './services';
 
 
@@ -261,6 +264,7 @@ const CINDY_VALIDATORS = [
 
 const CINDY_SERVICES = [
   CindyConfirmationService,
+  CindyMessagesService,
 ];
 
 const PRIMENG_MODULES = [
@@ -341,6 +345,7 @@ const PRIMENG_MODULES = [
 
 const PRIMENG_SERVICES = [
   ConfirmationService,
+  MessageService
 ];
 
 
