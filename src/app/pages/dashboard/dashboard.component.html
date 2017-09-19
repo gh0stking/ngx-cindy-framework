@@ -74,6 +74,22 @@
             <c-fieldset legend="Header" [toggleable]="true">
                 this is my content.
             </c-fieldset>
+
+            <br />
+
+            <c-toolbar>
+                <div class="ui-toolbar-group-left">
+                    <c-button label="add" icon="fa fa-plus" iconPos="left"></c-button>
+                    <c-button label="confirm" icon="fa fa-remove" iconPos="left"></c-button>
+                </div>
+
+                <div class="ui-toolbar-group-right">
+                    <c-button label="search" icon="fa fa-search" iconPos="left"></c-button>
+                    <i class="fa fa-bars"></i>
+                    <c-button label="refresh" icon="fa fa-refresh" iconPos="left"></c-button>
+                    <c-button label="trash" icon="fa fa-trash" iconPos="left"></c-button>
+                </div>
+            </c-toolbar>
         </c-panel>
 
         <c-panel title="Overlay" [toggleable]="true">
