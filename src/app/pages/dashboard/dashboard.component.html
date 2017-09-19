@@ -65,7 +65,62 @@
         </c-panel>
 
         <c-panel title="Data" [toggleable]="true">
+            <c-fieldset legend="Carousel" [toggleable]="true">
+                Carousel
+            </c-fieldset>
 
+            <c-fieldset legend="DataGrid" [toggleable]="true">
+                DataGrid
+            </c-fieldset>
+
+            <c-fieldset legend="DataList" [toggleable]="true">
+                DataList
+            </c-fieldset>
+
+            <c-fieldset legend="DataScroller" [toggleable]="true">
+                DataScroller
+            </c-fieldset>
+
+            <c-fieldset legend="DataTable" [toggleable]="true">
+                <c-dataTable [value]="cars" [loading]="true">
+                    <c-column field="vin" header="Vin"></c-column>
+                    <c-column field="year" header="Year"></c-column>
+                    <c-column field="brand" header="Brand"></c-column>
+                    <c-column field="color" header="Color"></c-column>
+                </c-dataTable>
+            </c-fieldset>
+
+            <c-fieldset legend="Org Chart" [toggleable]="true">
+                Org Chart
+            </c-fieldset>
+
+            <c-fieldset legend="OrderList" [toggleable]="true">
+                OrderList
+            </c-fieldset>
+
+            <c-fieldset legend="GMap" [toggleable]="true">
+                GMap
+            </c-fieldset>
+
+            <c-fieldset legend="Paginator" [toggleable]="true">
+                Paginator
+            </c-fieldset>
+
+            <c-fieldset legend="PickList" [toggleable]="true">
+                PickList
+            </c-fieldset>
+
+            <c-fieldset legend="Schedule" [toggleable]="true">
+                Schedule
+            </c-fieldset>
+
+            <c-fieldset legend="Tree" [toggleable]="true">
+                Tree
+            </c-fieldset>
+
+            <c-fieldset legend="TreeTable" [toggleable]="true">
+                TreeTable
+            </c-fieldset>
         </c-panel>
     </div>
 

@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
     radarData: any;
     msgs: any = [];
     growls: any = [];
+    cars: any = [];
 
     constructor(
         private messageService: CindyMessagesService,
@@ -40,6 +41,7 @@ export class DashboardComponent implements OnInit {
         this.getDoughnutData();
         this.getPolarData();
         this.getRadarData();
+        this.getCars();
     }
 
     getBarData() {
@@ -297,6 +299,21 @@ export class DashboardComponent implements OnInit {
         }
 
         this.msgs.push({ severity: 'info', summary: 'File Uploaded', detail: '' });
+    }
+
+    getCars() {
+        this.cars = [
+            { vin: "dsad231ff", year: "2012", brand: "VW", color: "Orange" },
+            { vin: "gwregre345", year: "2011", brand: "Audi", color: "Black" },
+            { vin: "h354htr", year: "2005", brand: "Renault", color: "Gray" },
+            { vin: "j6w54qgh", year: "2003", brand: "BMW", color: "Blue" },
+            { vin: "hrtwy34", year: "1995", brand: "Mercedes", color: "Orange" },
+            { vin: "jejtyj", year: "2005", brand: "Volvo", color: "Black" },
+            { vin: "g43gr", year: "2012", brand: "Honda", color: "Yellow" },
+            { vin: "greg34", year: "2013", brand: "Jaguar", color: "Orange" },
+            { vin: "h54hw5", year: "2000", brand: "Ford", color: "Black" },
+            { vin: "245t2s", year: "2013", brand: "Fiat", color: "Red" },
+        ];
     }
 
 
