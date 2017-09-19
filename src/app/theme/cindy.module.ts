@@ -99,7 +99,7 @@ import {
   CindyTree,
   CindyTreeTable,
   CindyDragDrop,
-  CindyUpload,
+  CindyFileUpload,
   CindyAutoComplete,
   CindyCalendar,
   CindyCheckbox,
@@ -164,6 +164,7 @@ import {
 
 import {
   CindyTooltip,
+  CindyTemplate,
 } from './directives';
 
 import {
@@ -194,7 +195,7 @@ const CINDY_COMPONENTS = [
   CindyTree,
   CindyTreeTable,
   CindyDragDrop,
-  CindyUpload,
+  CindyFileUpload,
   CindyAutoComplete,
   CindyCalendar,
   CindyCheckbox,
@@ -259,6 +260,7 @@ const CINDY_COMPONENTS = [
 
 const CINDY_DIRECTIVES = [
   CindyTooltip,
+  CindyTemplate,
 ];
 
 const CINDY_VALIDATORS = [

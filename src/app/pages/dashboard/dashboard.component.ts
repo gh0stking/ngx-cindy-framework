@@ -289,6 +289,16 @@ export class DashboardComponent implements OnInit {
         this.growls.push({ severity: 'success', summary: 'Success Message', detail: 'Order submitted' });
     }
 
+    uploadedFiles: any[] = [];
+
+    onUpload(event) {
+        for (let file of event.files) {
+            this.uploadedFiles.push(file);
+        }
+
+        this.msgs.push({ severity: 'info', summary: 'File Uploaded', detail: '' });
+    }
+
 
 
 }

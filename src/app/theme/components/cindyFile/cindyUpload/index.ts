@@ -1,1 +1,1 @@
-export * from './cindyUpload.component';
+export * from './cindyFileUpload.component';

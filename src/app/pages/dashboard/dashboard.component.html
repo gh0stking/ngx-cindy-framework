@@ -102,7 +102,21 @@
         </c-panel>
 
         <c-panel title="File" [toggleable]="true">
-            File
+            <h3 class="first">Advanced</h3>
+            <c-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" multiple="multiple" accept="image/*" maxFileSize="1000000">
+                <ng-template cTemplate type="content">
+                    <ul *ngIf="uploadedFiles.length">
+                        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                    </ul>
+                </ng-template>
+            </c-fileUpload>
+
+            <h3>Basic</h3>
+            <c-fileUpload mode="basic" name="demo[]" url="./upload.php" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUpload($event)"></c-fileUpload>
+
+            <h3>Basic with Auto</h3>
+            <c-fileUpload #fubauto mode="basic" name="demo[]" url="./upload.php" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUploadAuto($event)"
+                auto="true" chooseLabel="Browse"></c-fileUpload>
         </c-panel>
 
         <c-panel title="Menu" [toggleable]="true">
