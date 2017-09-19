@@ -1,13 +1,71 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { SortMeta } from '../../common/sortmeta';
 import { FilterMetadata } from '../../common/filtermetadata';
+import { CindyColumn } from '../../../models/cindyColumn.model';
+import { DataTable } from 'primeng/primeng';
 
 @Component({
     selector: 'c-dataTable',
     template: `
-        <p-dataTable 
+        <p-dataTable #dt
             [value]='value'
+            [rows]='rows'
+            [paginator]='paginator'
+            [pageLinks]='pageLinks'
+            [totalRecords]='totalRecords'
+            [rowsPerPageOptions]='rowsPerPageOptions'
+            [alwaysShowPaginator]='alwaysShowPaginator'
+            [sortMode]='sortMode'
+            [sortField]='sortField'
+            [sortOrder]='sortOrder'
+            [defaultSortOrder]='defaultSortOrder'
+            [multiSortMeta]='multiSortMeta'
+            [rowGroupMode]='rowGroupMode'
+            [groupField]='groupField'
+            [sortableRowGroup]='sortableRowGroup'
+            [expandableRowGroups]='expandableRowGroups'
+            [responsive]='responsive'
+            [selectionMode]='selectionMode'
+            [headerCheckboxToggleAllPages]='headerCheckboxToggleAllPages'
+            [selection]='selection'
+            [editable]='editable'
+            [expandableRows]='expandableRows'
+            [expandedRows]='expandedRows'
+            [rowExpandMode]='rowExpandMode'
+            [expandedIcon]='expandedIcon'
+            [collapsedIcon]='collapsedIcon'
+            [globalFilter]='globalFilter'
+            [filterDelay]='filterDelay'
+            [lazy]='lazy'
+            [resizableColumns]='resizableColumns'
+            [columnResizeMode]='columnResizeMode'
+            [reorderableColumns]='reorderableColumns'
+            [scrollable]='scrollable'
+            [scrollHeight]='scrollHeight'
+            [scrollWidth]='scrollWidth'
+            [virtualScroll]='virtualScroll'
+            [virtualScrollDelay]='virtualScrollDelay'
+            [frozenValue]='frozenValue'
+            [style]='style'
+            [styleClass]='styleClass'
+            [contextMenu]='contextMenu'
+            [csvSeparator]='csvSeparator'
+            [exportFilename]='exportFilename'
+            [emptyMessage]='emptyMessage'
+            [paginatorPosition]='paginatorPosition'
+            [rowStyleClass]='rowStyleClass'
+            [rowStyleMap]='rowStyleMap'
+            [rowHover]='rowHover'
+            [filters]='filters'
+            [metaKeySelection]='metaKeySelection'
+            [dataKey]='dataKey'
             [loading]='loading'
+            [loadingIcon]='loadingIcon'
+            [enableLoader]='enableLoader'
+            [rowTrackBy]='rowTrackBy'
+            [compareSelectionBy]='compareSelectionBy'
+            [first]='first'
+            [immutable]='immutable'
             (selectionChange)='selectionChangeEvent($event)'
             (onRowClick)='onRowClickEvent($event)'
             (onRowSelect)='onRowSelectEvent($event)'
@@ -29,15 +87,38 @@ import { FilterMetadata } from '../../common/filtermetadata';
             (firstChange)='firstChangeEvent($event)'
             (onRowExpand)='onRowExpandEvent($event)'
             (onRowCollapse)='onRowCollapseEvent($event)'
-            (onRowGroupExpand)='onRowGroupExpandEvent($event)'>
-            <ng-content></ng-content>
+            (onRowGroupExpand)='onRowGroupExpandEvent($event)'
+            (onRowGroupCollapse)='onRowGroupCollapseEvent($event)'>
+            <p-header *ngIf='header'>{{header}}</p-header>
+            <p-column *ngFor='let c of columns' 
+                [field]="c.field" 
+                [header]="c.header"
+                [sortField]="c.sortField"
+                [filterField]="c.filterField"
+                [footer]="c.footer"
+                [sortable]="c.sortable"
+                [editable]="c.editable"
+                [filter]="c.filter"
+                [filterMatchMode]="c.filterMatchMode"
+                [filterType]="c.filterType"
+                [filterPlaceholder]="c.filterPlaceholder"
+                [filterMaxlength]="c.filterMaxlength"
+                [rowspan]="c.rowspan"
+                [colspan]="c.colspan"
+                [style]="c.style"
+                [styleClass]="c.styleClass"
+                [hidden]="c.hidden"
+                [expander]="c.expander">
+                [selectionMode]="c.selectionMode"
+                [frozen]="c.frozen"
+            </p-column>
+            <p-footer *ngIf='footer'>{{footer}}</p-footer>
         </p-dataTable>
-        `
+    `
 })
 export class CindyDataTable {
+    @Input() columns: Array<CindyColumn>;
     @Input() value: Array<any>;
-    @Input() headerRows: Array<any>;
-    @Input() footerRows: Array<any>;
     @Input() rows: number;
     @Input() paginator: boolean;
     @Input() pageLinks: number;
@@ -53,11 +134,10 @@ export class CindyDataTable {
     @Input() groupField: string;
     @Input() sortableRowGroup: boolean = true;
     @Input() expandableRowGroups: boolean;
-    @Input() expandedRowGroups: any[];
     @Input() responsive: boolean;
     @Input() selectionMode: string;
     @Input() headerCheckboxToggleAllPages: boolean;
-    @Input() selection:any[];
+    @Input() selection: any[];
     @Input() editable: boolean;
     @Input() expandableRows: boolean;
     @Input() expandedRows: any[];
@@ -94,9 +174,14 @@ export class CindyDataTable {
     @Input() enableLoader: boolean = true;
     @Input() rowTrackBy: Function = (index: number, item: any) => item;
     @Input() compareSelectionBy: string = 'deepEquals';
-    @Input() first:number=0;
+    @Input() first: number = 0;
     @Input() immutable: boolean = true;
+    @Input() header: string;
+    @Input() footer: string;
 
+    @Input() expandedRowGroups: any[];
+    @Input() headerRows: Array<any>;
+    @Input() footerRows: Array<any>;
     @Input() stacked: boolean;
     @Input() frozenWidth: any;
     @Input() unfrozenWidth: any;
@@ -219,5 +304,19 @@ export class CindyDataTable {
 
     onRowGroupCollapseEvent(event) {
         this.onRowGroupCollapse.emit(event);
+    }
+
+    @ViewChild("dt") dt: DataTable;
+
+    public reset() {
+        this.dt.reset();
+    }
+
+    public exportCSV() {
+        this.dt.exportCSV();
+    }
+
+    public toggleRow(data: any) {
+        this.dt.toggleRow(data);
     }
 }

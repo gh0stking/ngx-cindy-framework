@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CindyConfirmationService } from '../../theme/services/cindyConfirmDialog/cindyConfirmation.service';
 import { CindyMessagesService } from '../../theme/services/cindyMessages/cindyMessages.service';
+import { CindyColumn } from '../../theme/models/cindyColumn.model';
 
 @Component({
     selector: 'dashboard',
@@ -25,6 +26,8 @@ export class DashboardComponent implements OnInit {
     msgs: any = [];
     growls: any = [];
     cars: any = [];
+    carColumns: Array<CindyColumn> = [];
+    loading: boolean;
 
     constructor(
         private messageService: CindyMessagesService,
@@ -41,7 +44,13 @@ export class DashboardComponent implements OnInit {
         this.getDoughnutData();
         this.getPolarData();
         this.getRadarData();
-        this.getCars();
+        this.getCarColumns();
+
+        this.loading = true;
+        setTimeout(() => {
+            this.getCars();
+            this.loading = false;
+        }, 5000);
     }
 
     getBarData() {
@@ -316,6 +325,18 @@ export class DashboardComponent implements OnInit {
         ];
     }
 
+    getCarColumns() {
+        this.carColumns = [
+            { field: 'vin', header: 'Vin', sortable: true },
+            { field: 'year', header: 'Year' },
+            { field: 'brand', header: 'Brand' },
+            { field: 'color', header: 'Color', editable: true },
+        ];
+    }
 
+    handleRowSelect(event) {
+        let data = event.data;
+        console.log(data);
+    }
 
 }

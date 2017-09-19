@@ -82,11 +82,11 @@
             </c-fieldset>
 
             <c-fieldset legend="DataTable" [toggleable]="true">
-                <c-dataTable [value]="cars" [loading]="true">
-                    <c-column field="vin" header="Vin"></c-column>
-                    <c-column field="year" header="Year"></c-column>
-                    <c-column field="brand" header="Brand"></c-column>
-                    <c-column field="color" header="Color"></c-column>
+                <div style="margin-bottom:5px;">
+                    <c-button label="export csv" icon="fa-file-excel-o" (click)="dt.exportCSV()"></c-button>
+                </div>
+                <c-dataTable #dt [value]="cars" [columns]="carColumns" [header]="'List of Cars'" [loading]="loading" [rows]="5" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]" [selectionMode]="single"
+                    (onRowSelect)="handleRowSelect($event)" [editable]="true">
                 </c-dataTable>
             </c-fieldset>
 

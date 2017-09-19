@@ -5,9 +5,7 @@ import { Component, Input, } from '@angular/core';
     template: `
         <p-column 
             [field]="field" 
-            [header]="header"
-            
-            [hidden]="hidden">
+            [header]="header">
         </p-column>
     `
 })
