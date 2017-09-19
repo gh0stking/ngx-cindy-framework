@@ -150,6 +150,7 @@ import {
   CindyOverlayPanel,
   CindyPageTop,
   CindyAccordion,
+  CindyAccordionTab,
   CindyFieldset,
   CindyGrid,
   CindyPanel,
@@ -243,6 +244,7 @@ const CINDY_COMPONENTS = [
   CindyOverlayPanel,
   CindyPageTop,
   CindyAccordion,
+  CindyAccordionTab,
   CindyFieldset,
   CindyGrid,
   CindyPanel,
@@ -345,7 +347,7 @@ const PRIMENG_MODULES = [
 
 const PRIMENG_SERVICES = [
   ConfirmationService,
-  MessageService
+  MessageService,
 ];
 
 
@@ -370,8 +372,8 @@ export class CindyModule {
     return <ModuleWithProviders>{
       ngModule: CindyModule,
       providers: [
-        ...CINDY_VALIDATORS,
         ...PRIMENG_SERVICES,
+        ...CINDY_VALIDATORS,
         ...CINDY_SERVICES,
       ]
     };
