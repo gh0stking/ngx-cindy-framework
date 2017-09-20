@@ -124,7 +124,12 @@
             </c-fieldset>
 
             <c-fieldset legend="TreeTable" [toggleable]="true">
-                TreeTable
+                <c-treeTable [value]="files" selectionMode="single" [(selection)]="selectedFile">
+                    <c-header>List of Files</c-header>
+                    <c-column field="name" header="Name"></c-column>
+                    <c-column field="size" header="Size"></c-column>
+                    <c-column field="type" header="Type"></c-column>
+                </c-treeTable>
             </c-fieldset>
         </c-panel>
     </div>

@@ -5,7 +5,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
     template: `
         <p-tree 
             [value]="value"
-            [selectionMode]="selectionMode"
+            selectionMode="{{selectionMode}}"
             [selection]="selection"
             [style]="style"
             [styleClass]="styleClass"

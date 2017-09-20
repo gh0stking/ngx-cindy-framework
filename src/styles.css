@@ -275,7 +275,7 @@ img, a, p, body, html, select, div, label, option, ul, li, dl, dd, span, input, 
   
   /*  这里 将  td  都居中了 */
   td {
-    text-align: center;
+    text-align: left;
   }
   
   .td-left td {
@@ -329,7 +329,6 @@ img, a, p, body, html, select, div, label, option, ul, li, dl, dd, span, input, 
   
   td {
     border-color: #dfe6ec !important;
-    color: #466070 !important;
   }
   
   .button-s span {
