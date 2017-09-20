@@ -19,11 +19,11 @@ import { TreeNode } from '../../common/treenode';
             [toggleColumnIndex]="toggleColumnIndex"
             [tableStyle]="tableStyle"
             [tableStyleClass]="tableStyleClass"
-            (onNodeSelect)="onNodeSelectEvent(event)"
-            (onNodeUnselect)="onNodeUnselectEvent(event)"
-            (onNodeExpand)="onNodeExpandEvent(event)"
-            (onNodeCollapse)="onNodeCollapseEvent(event)"
-            (onContextMenuSelect)="onContextMenuSelectEvent(event)">
+            (onNodeSelect)="onNodeSelectEvent($event)"
+            (onNodeUnselect)="onNodeUnselectEvent($event)"
+            (onNodeExpand)="onNodeExpandEvent($event)"
+            (onNodeCollapse)="onNodeCollapseEvent($event)"
+            (onContextMenuSelect)="onContextMenuSelectEvent($event)">
             <p-header *ngIf='header'>
                 <ng-content select="c-header"></ng-content>
             </p-header>

@@ -31,6 +31,7 @@ export class DashboardComponent implements OnInit {
     loading: boolean;
     treeNodes: TreeNode[];
     files: TreeNode[];
+    selectedFiles: TreeNode[];
     selectedFile: TreeNode;
     orgChartData: TreeNode[];
 
@@ -524,6 +525,14 @@ export class DashboardComponent implements OnInit {
                 }
             ]
         }];
+    }
+
+    onBasicUpload(event) {
+
+    }
+
+    onBasicUploadAuto(event) {
+
     }
 
 

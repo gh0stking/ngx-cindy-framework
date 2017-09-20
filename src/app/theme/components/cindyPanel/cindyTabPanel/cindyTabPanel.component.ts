@@ -4,8 +4,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
     selector: 'c-tabPanel',
     template: `
         <p-tabPanel 
-            [header]="orientation"
-            [selected]="activeIndex"
+            [header]="header"
+            [selected]="selected"
             [disabled]="disabled"
             [closable]="closable"
             [headerStyle]="headerStyle"

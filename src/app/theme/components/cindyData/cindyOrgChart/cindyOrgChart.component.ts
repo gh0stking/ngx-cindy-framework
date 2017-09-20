@@ -10,8 +10,8 @@ import { TreeNode } from '../../common/treenode';
             [styleClass]="styleClass"
             selectionMode="{{selectionMode}}"
             [(selection)]="selection"
-            (onNodeSelect)="onNodeSelectEvent(event)"
-            (onNodeUnselect)="onNodeUnselectEvent(event)">
+            (onNodeSelect)="onNodeSelectEvent($event)"
+            (onNodeUnselect)="onNodeUnselectEvent($event)">
             <ng-content></ng-content>
         </p-organizationChart>
     `
