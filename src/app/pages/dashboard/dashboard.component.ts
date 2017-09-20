@@ -333,7 +333,6 @@ export class DashboardComponent implements OnInit {
 
     handleRowSelect(event) {
         let data = event.data;
-        console.log(data);
     }
 
     getTreeNodes() {

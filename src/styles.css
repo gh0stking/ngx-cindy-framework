@@ -29,7 +29,6 @@ img, a, p, body, html, select, div, label, option, ul, li, dl, dd, span, input, 
   }
   
   label {
-    cursor: inherit;
     vertical-align: middle;
   }
   

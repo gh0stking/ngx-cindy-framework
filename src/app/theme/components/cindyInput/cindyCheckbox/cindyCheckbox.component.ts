@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ViewChild, Optional, Inject } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, forwardRef, Optional, Inject } from '@angular/core';
 import { ElementBase } from '../../common/form';
 
 import {
@@ -15,12 +15,19 @@ import {
             [(ngModel)]='val' 
             [name]='name'
             [value]='value'
-            [label]='label'>
+            [label]='label'
+            [disabled]='disabled'
+            [binary]='binary'
+            [tabindex]='tabindex'
+            [inputId]='inputId'
+            [style]='style'
+            [styleClass]='styleClass'
+            (onChange)="onChangeEvent($event)">
         </p-checkbox>
     `,
     providers: [{
         provide: NG_VALUE_ACCESSOR,
-        useExisting: CindyCheckbox,
+        useExisting: forwardRef(() => CindyCheckbox),
         multi: true
     }]
 })
@@ -28,12 +35,24 @@ export class CindyCheckbox extends ElementBase<boolean>{
     @ViewChild(NgModel) model: NgModel;
     @Input() label: string;
     @Input() name: string;
-    @Input() value: string;
+    @Input() value: any;
+    @Input() disabled: boolean;
+    @Input() binary: boolean;
+    @Input() tabindex: number;
+    @Input() inputId: string;
+    @Input() style: any;
+    @Input() styleClass: string;
+
+    @Output() onChange: EventEmitter<any> = new EventEmitter();
 
     constructor(
         @Optional() @Inject(NG_VALIDATORS) validators: Array<any>,
         @Optional() @Inject(NG_VALIDATORS) asyncValidators: Array<any>,
     ) {
         super(validators, asyncValidators);
+    }
+
+    onChangeEvent(event) {
+        this.onChange.emit(event);
     }
 }
