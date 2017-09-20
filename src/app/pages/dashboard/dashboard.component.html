@@ -15,6 +15,10 @@
                 <c-radioButton [(ngModel)]='user.Sex' value="1" label="女"></c-radioButton>
             </div>
             <div class="ui-g">
+                <label for="">生　日：</label>
+                <c-calendar [(ngModel)]='user.Birth' showButtonBar='true' readonlyInput='true' showIcon='true'></c-calendar>
+            </div>
+            <div class="ui-g">
                 <label for="">状　态：</label>
                 <c-checkbox [(ngModel)]='user.Status' binary="true" label="有效"></c-checkbox>
             </div>
@@ -36,6 +40,7 @@
                 <div>用户名：{{user.Name}}</div>
                 <div>密　码：{{user.Password}}</div>
                 <div>性　别：{{user.Sex=="0"?"男":"女"}}</div>
+                <div>生　日：{{user.Birth|date:'yyyy-MM-dd'}}</div>
                 <div>住　址：{{user.Addr}}</div>
                 <div>电　话：{{user.Tel}}</div>
                 <div>状　态：{{user.Status}}</div>

@@ -11,7 +11,7 @@ img, a, p, body, html, select, div, label, option, ul, li, dl, dd, span, input, 
     width: 100%;
     -webkit-font-smoothing: antialiased;
     color: #1f2f3d;
-    font-size: 14px;
+    /*font-size: 14px;*/
     height: 100%;
   }
   
