@@ -96,7 +96,14 @@
             </c-fieldset>
 
             <c-fieldset legend="Org Chart" [toggleable]="true">
-                Org Chart
+                <c-organizationChart [value]="orgChartData" styleClass="company">
+                    <ng-template let-node cTemplate="leaf">
+                        <span style="font-weight:bold">{{node.label}}</span>
+                    </ng-template>
+                    <ng-template let-node cTemplate="default">
+                        {{node.label}}
+                    </ng-template>
+                </c-organizationChart>
             </c-fieldset>
 
             <c-fieldset legend="OrderList" [toggleable]="true">

@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, ContentChildren, QueryList, AfterContentInit, ContentChild } from '@angular/core';
 import { CindyColumn, CindyHeader, CindyFooter } from '../../common/shared';
+import { TreeNode } from '../../common/treenode';
 
 @Component({
     selector: 'c-treeTable',
@@ -59,7 +60,7 @@ export class CindyTreeTable implements AfterContentInit {
     @ContentChild(CindyFooter) footer: CindyFooter;
     @ContentChildren(CindyColumn) cols: QueryList<CindyColumn>;
 
-    @Input() value: any[];
+    @Input() value: TreeNode[];
     @Input() labelExpand: string = "Expand";
     @Input() labelCollapse: string = "Collapse";
     @Input() expandedIcon: string = "fa-caret-down";

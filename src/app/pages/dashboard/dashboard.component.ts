@@ -32,6 +32,7 @@ export class DashboardComponent implements OnInit {
     treeNodes: TreeNode[];
     files: TreeNode[];
     selectedFile: TreeNode;
+    orgChartData: TreeNode[];
 
     constructor(
         private messageService: CindyMessagesService,
@@ -57,6 +58,7 @@ export class DashboardComponent implements OnInit {
 
         this.getTreeNodes();
         this.getFiles();
+        this.getOrgChartData();
     }
 
     getBarData() {
@@ -492,7 +494,36 @@ export class DashboardComponent implements OnInit {
                 ]
             }
         ];
+    }
 
+    getOrgChartData() {
+        this.orgChartData = [{
+            label: 'Root',
+            children: [
+                {
+                    label: 'Child 1',
+                    children: [
+                        {
+                            label: 'Grandchild 1.1', type: 'leaf'
+                        },
+                        {
+                            label: 'Grandchild 1.2', type: 'leaf'
+                        }
+                    ]
+                },
+                {
+                    label: 'Child 2',
+                    children: [
+                        {
+                            label: 'Child 2.1', type: 'leaf'
+                        },
+                        {
+                            label: 'Child 2.2', type: 'leaf'
+                        }
+                    ]
+                }
+            ]
+        }];
     }
 
 

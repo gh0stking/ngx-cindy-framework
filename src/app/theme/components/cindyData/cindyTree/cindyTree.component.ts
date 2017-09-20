@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { TreeNode } from '../../common/treenode';
 
 @Component({
     selector: 'c-tree',
@@ -26,7 +27,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
     `
 })
 export class CindyTree {
-    @Input() value: Array<any>;
+    @Input() value: TreeNode[];
     @Input() selectionMode: string;
     @Input() selection: any;
     @Input() style: string;
