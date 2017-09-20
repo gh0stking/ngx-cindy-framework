@@ -11,4 +11,3 @@ export * from './cindyPickList';
 export * from './cindySchedule';
 export * from './cindyTree';
 export * from './cindyTreeTable';
-export * from './cindyColumn';

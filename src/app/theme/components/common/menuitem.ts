@@ -1,12 +1,12 @@
 import { EventEmitter } from '@angular/core';
 
-export class CindyMenuModel {
+export interface MenuItem {
     label?: string;
     icon?: string;
     command?: (event?: EventEmitter<any>) => void;
     url?: string;
     routerLink?: any;
-    items?: CindyMenuModel[];
+    items?: MenuItem[];
     expanded?: boolean;
     disabled?: boolean;
     visible?: boolean;

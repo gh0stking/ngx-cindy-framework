@@ -1,6 +1,6 @@
 import { NgModel } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { ValueAccessorBase } from './value-accessor';
+import { ValueAccessorBase } from './valueaccessor';
 import {
     AsyncValidatorArray,
     ValidatorArray,

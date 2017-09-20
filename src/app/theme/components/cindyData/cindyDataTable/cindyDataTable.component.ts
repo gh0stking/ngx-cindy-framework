@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { SortMeta } from '../../common/sortmeta';
 import { FilterMetadata } from '../../common/filtermetadata';
-import { CindyColumn } from '../../../models/cindyColumn.model';
+import { Column } from '../../common/column';
 import { DataTable } from 'primeng/primeng';
 
 @Component({
@@ -117,7 +117,7 @@ import { DataTable } from 'primeng/primeng';
     `
 })
 export class CindyDataTable {
-    @Input() columns: Array<CindyColumn>;
+    @Input() columns: Array<Column>;
     @Input() value: Array<any>;
     @Input() rows: number;
     @Input() paginator: boolean;

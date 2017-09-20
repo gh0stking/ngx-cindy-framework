@@ -1,4 +1,4 @@
-export class CindyColumn {
+export class Column {
     field: string;
     header: string;
     sortField?: string;

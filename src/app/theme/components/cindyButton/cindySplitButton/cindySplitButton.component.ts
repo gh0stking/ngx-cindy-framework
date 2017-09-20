@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { CindyMenuModel } from '../../../models/cindyMenuItem';
+import { MenuItem } from '../../common/menuitem';
 
 @Component({
     selector: 'c-splitButton',
@@ -16,7 +16,7 @@ import { CindyMenuModel } from '../../../models/cindyMenuItem';
 export class CindySplitButton {
     @Input() label: string;
     @Input() icon: string;
-    @Input() model: CindyMenuModel[];
+    @Input() model: MenuItem[];
     @Input() styleClass: string;
     @Output() onClick: EventEmitter<any> = new EventEmitter();
 
