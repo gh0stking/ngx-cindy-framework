@@ -43,7 +43,7 @@ import { CindyColumn, CindyHeader, CindyFooter } from '../../common/shared';
                 [styleClass]="c.styleClass"
                 [hidden]="c.hidden"
                 [expander]="c.expander"
-                selectionMode="c.selectionMode"
+                selectionMode="{{c.selectionMode}}"
                 [filterPlaceholder]="c.filterPlaceholder"
                 [filterMaxlength]="c.filterMaxlength"
                 [frozen]="c.frozen">

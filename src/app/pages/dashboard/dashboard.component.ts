@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CindyConfirmationService } from '../../theme/services/cindyConfirmDialog/cindyConfirmation.service';
 import { CindyMessagesService } from '../../theme/services/cindyMessages/cindyMessages.service';
-import { Column } from '../../theme/components/common/column';
 import { TreeNode } from '../../theme/components/common/treenode';
 import { CindyTree } from '../../theme/components/cindyData/cindyTree/cindyTree.component';
 
@@ -29,7 +28,6 @@ export class DashboardComponent implements OnInit {
     msgs: any = [];
     growls: any = [];
     cars: any = [];
-    carColumns: Array<Column> = [];
     loading: boolean;
     treeNodes: TreeNode[];
     files: TreeNode[];
@@ -50,7 +48,6 @@ export class DashboardComponent implements OnInit {
         this.getDoughnutData();
         this.getPolarData();
         this.getRadarData();
-        this.getCarColumns();
 
         this.loading = true;
         setTimeout(() => {
@@ -334,15 +331,6 @@ export class DashboardComponent implements OnInit {
         ];
     }
 
-    getCarColumns() {
-        this.carColumns = [
-            { field: 'vin', header: 'Vin', sortable: true },
-            { field: 'year', header: 'Year' },
-            { field: 'brand', header: 'Brand' },
-            { field: 'color', header: 'Color', editable: true },
-        ];
-    }
-
     handleRowSelect(event) {
         let data = event.data;
         console.log(data);
@@ -506,7 +494,6 @@ export class DashboardComponent implements OnInit {
             }
         ];
 
-        console.log(this.files);
     }
 
 

@@ -1,7 +1,7 @@
-import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, ContentChild, ContentChildren, QueryList, AfterContentInit } from '@angular/core';
 import { SortMeta } from '../../common/sortmeta';
 import { FilterMetadata } from '../../common/filtermetadata';
-import { Column } from '../../common/column';
+import { CindyColumn, CindyHeader, CindyFooter } from '../../common/shared';
 import { DataTable } from 'primeng/primeng';
 
 @Component({
@@ -25,7 +25,7 @@ import { DataTable } from 'primeng/primeng';
             [sortableRowGroup]='sortableRowGroup'
             [expandableRowGroups]='expandableRowGroups'
             [responsive]='responsive'
-            [selectionMode]='selectionMode'
+            selectionMode='{{selectionMode}}'
             [headerCheckboxToggleAllPages]='headerCheckboxToggleAllPages'
             [selection]='selection'
             [editable]='editable'
@@ -89,7 +89,9 @@ import { DataTable } from 'primeng/primeng';
             (onRowCollapse)='onRowCollapseEvent($event)'
             (onRowGroupExpand)='onRowGroupExpandEvent($event)'
             (onRowGroupCollapse)='onRowGroupCollapseEvent($event)'>
-            <p-header *ngIf='header'>{{header}}</p-header>
+            <p-header *ngIf='header'>
+                <ng-content select='c-header'></ng-content>
+            </p-header>
             <p-column *ngFor='let c of columns' 
                 [field]="c.field" 
                 [header]="c.header"
@@ -109,15 +111,21 @@ import { DataTable } from 'primeng/primeng';
                 [styleClass]="c.styleClass"
                 [hidden]="c.hidden"
                 [expander]="c.expander">
-                [selectionMode]="c.selectionMode"
+                selectionMode="{{c.selectionMode}}"
                 [frozen]="c.frozen"
             </p-column>
-            <p-footer *ngIf='footer'>{{footer}}</p-footer>
+            <p-footer *ngIf='footer'>
+                <ng-content select='c-footer'></ng-content>
+            </p-footer>
         </p-dataTable>
     `
 })
-export class CindyDataTable {
-    @Input() columns: Array<Column>;
+export class CindyDataTable implements AfterContentInit {
+    @ContentChild(CindyHeader) header;
+    @ContentChild(CindyFooter) footer;
+    @ContentChildren(CindyColumn) cols: QueryList<CindyColumn>;
+    columns: CindyColumn[];
+
     @Input() value: Array<any>;
     @Input() rows: number;
     @Input() paginator: boolean;
@@ -176,8 +184,6 @@ export class CindyDataTable {
     @Input() compareSelectionBy: string = 'deepEquals';
     @Input() first: number = 0;
     @Input() immutable: boolean = true;
-    @Input() header: string;
-    @Input() footer: string;
 
     @Input() expandedRowGroups: any[];
     @Input() headerRows: Array<any>;
@@ -213,6 +219,14 @@ export class CindyDataTable {
     @Output() onRowCollapse: EventEmitter<any> = new EventEmitter();
     @Output() onRowGroupExpand: EventEmitter<any> = new EventEmitter();
     @Output() onRowGroupCollapse: EventEmitter<any> = new EventEmitter();
+
+    ngAfterContentInit() {
+        this.initColumns();
+    }
+
+    initColumns() {
+        this.columns = this.cols.toArray();
+    }
 
     selectionChangeEvent(event) {
         this.selectionChange.emit(event);
@@ -319,4 +333,5 @@ export class CindyDataTable {
     public toggleRow(data: any) {
         this.dt.toggleRow(data);
     }
+
 }
