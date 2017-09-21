@@ -152,9 +152,17 @@
 
     <div class="ui-g-6">
         <c-panel title="Panel" [toggleable]="true">
-            <c-fieldset legend="Header" [toggleable]="true">
-                this is my content.
-            </c-fieldset>
+            <c-tabView [activeIndex]="0">
+                <c-tabPanel header="Header 1" [selected]="true">
+                    Content 1
+                </c-tabPanel>
+                <c-tabPanel header="Header 2">
+                    Content 2
+                </c-tabPanel>
+                <c-tabPanel header="Header 3">
+                    Content 3
+                </c-tabPanel>
+            </c-tabView>
 
             <br />
 

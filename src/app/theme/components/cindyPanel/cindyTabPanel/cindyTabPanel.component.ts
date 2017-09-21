@@ -1,19 +1,8 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ContentChildren, ElementRef } from '@angular/core';
 
 @Component({
     selector: 'c-tabPanel',
-    template: `
-        <p-tabPanel 
-            [header]="header"
-            [selected]="selected"
-            [disabled]="disabled"
-            [closable]="closable"
-            [headerStyle]="headerStyle"
-            [headerStyleClass]="headerStyleClass"
-            [cache]="cache">
-            <ng-content></ng-content>
-        </p-tabPanel>
-    `
+    template: `<ng-content></ng-content>`
 })
 export class CindyTabPanel {
     @Input() header: string;
@@ -24,4 +13,5 @@ export class CindyTabPanel {
     @Input() headerStyleClass: string;
     @Input() controlClose: boolean = false;
     @Input() cache: boolean = true;
+
 }

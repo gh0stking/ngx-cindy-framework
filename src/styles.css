@@ -313,11 +313,6 @@ img, a, p, body, html, select, div, label, option, ul, li, dl, dd, span, input, 
     margin-bottom: 15px;
   }
   
-  /*tr*/
-  tr:hover {
-    background-color: #EFF2F7 !important;
-  }
-  
   /*td颜色*/
   th {
     color: #1f2d3d !important;
@@ -397,4 +392,8 @@ img, a, p, body, html, select, div, label, option, ul, li, dl, dd, span, input, 
   }
   .none-padding-td td{
     padding: 0 !important;
+  }
+
+  .ui-tabview-nav{
+    border:0;
   }
