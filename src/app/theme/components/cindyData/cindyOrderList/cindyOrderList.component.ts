@@ -15,7 +15,6 @@ import { CindyTemplate } from '../../../directives/common/cindyTemplate.directiv
             [metaKeySelection]="metaKeySelection"
             [dragdrop]="dragdrop"
             [dragdropScope]="dragdropScope"
-            [filterPlaceHolder]="filterPlaceHolder"
             (onReorder)="onReorderEvent($event)"
             (onSelectionChange)="onSelectionChangeEvent($event)"
             (onFilterEvent)="onFilterEventEvent($event)">
