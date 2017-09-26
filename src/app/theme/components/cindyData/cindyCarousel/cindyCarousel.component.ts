@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ContentChild } from '@angular/core';
+import { CindyTemplate } from '../../../directives/common/cindyTemplate.directive';
 
 @Component({
     selector: 'c-carousel',
@@ -18,11 +19,13 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
             [style]="style"
             [styleClass]="styleClass"
             (onPage)="onPageEvent($event)">
-            <ng-content></ng-content>
+            <ng-content [ngTemplateOutlet]='template'></ng-content>
         </p-carousel>
     `
 })
 export class CindyCarousel {
+    @ContentChild(CindyTemplate) template: CindyTemplate;
+
     @Input() value: any[];
     @Input() numVisible: number = 3;
     @Input() firstVisible: number = 0;
