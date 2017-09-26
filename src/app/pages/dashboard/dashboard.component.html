@@ -152,6 +152,19 @@
 
     <div class="ui-g-6">
         <c-panel title="Panel" [toggleable]="true">
+
+            <c-accordion>
+                <c-accordionTab header="Header 1">
+                    Content 1
+                </c-accordionTab>
+                <c-accordionTab header="Header 2">
+                    Content 2
+                </c-accordionTab>
+                <c-accordionTab header="Header 3">
+                    Content 3
+                </c-accordionTab>
+            </c-accordion>
+
             <c-tabView [activeIndex]="0">
                 <c-tabPanel header="Header 1" [selected]="true">
                     Content 1
