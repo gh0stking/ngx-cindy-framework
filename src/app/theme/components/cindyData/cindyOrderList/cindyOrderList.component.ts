@@ -23,6 +23,8 @@ import { CindyTemplate } from '../../../directives/common/cindyTemplate.directiv
     `
 })
 export class CindyOrderList {
+    @ContentChild(CindyTemplate) template: CindyTemplate;
+    
     @Input() value: any[];
     @Input() header: string;
     @Input() style: string;
