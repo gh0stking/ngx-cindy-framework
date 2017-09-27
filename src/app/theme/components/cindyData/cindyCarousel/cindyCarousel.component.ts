@@ -5,7 +5,7 @@ import { CindyTemplate } from '../../../directives/common/cindyTemplate.directiv
     selector: 'c-carousel',
     template: `
         <p-carousel 
-            [value]="items"
+            [value]="value"
             [numVisible]="numVisible"
             [firstVisible]="firstVisible"
             [headerText]="headerText"
