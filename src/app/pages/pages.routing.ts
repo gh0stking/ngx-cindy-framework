@@ -1,7 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 
-import { Pages } from './pages.component';
+import { PagesComponent } from './pages.component';
 
 export const routes: Routes = [
     {
@@ -10,7 +10,7 @@ export const routes: Routes = [
     },
     {
         path: 'pages',
-        component: Pages,
+        component: PagesComponent,
         // canActivate: [AuthGuard],
         children: [
             {
@@ -35,5 +35,6 @@ export const routes: Routes = [
         ]
     }
 ];
+
 
 export const routing: ModuleWithProviders = RouterModule.forChild(routes);

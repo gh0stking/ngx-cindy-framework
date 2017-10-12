@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { routing } from './pages.routing';
-import { Pages } from './pages.component';
+import { PagesComponent } from './pages.component';
 import { CindyModule } from '../theme/cindy.module';
 
 import { AccordionModule, SharedModule, TooltipModule } from 'primeng/primeng';
@@ -18,6 +18,6 @@ import { AccordionModule, SharedModule, TooltipModule } from 'primeng/primeng';
         SharedModule,
         TooltipModule,
     ],
-    declarations: [Pages]
+    declarations: [PagesComponent]
 })
 export class PagesModule { }

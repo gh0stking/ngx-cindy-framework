@@ -40,7 +40,7 @@ import { PAGES_MENU } from './pages.menu';
         ])
     ]
 })
-export class Pages implements OnInit {
+export class PagesComponent implements OnInit {
     isDisabled: boolean = true;
     constructor(public router: Router) {
     };
@@ -63,7 +63,7 @@ export class Pages implements OnInit {
 
     /************************* 获取菜单 ********************************/
     getMenu() {
-        this.menus = PAGES_MENU[0].children;
+        this.menus = PAGES_MENU;
     }
 
     /************************* 改变左侧菜单宽度 ********************************/
