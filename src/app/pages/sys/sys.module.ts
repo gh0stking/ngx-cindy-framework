@@ -8,7 +8,7 @@ import { SysUserRoleComponent } from './sys-user-role';
 
 const routes: Routes = [
     {
-        path: '',
+        path: 'sys',
         component: SysComponent,
         children: [
             { path: 'user', component: SysUserComponent },
