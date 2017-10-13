@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CindyModule } from '../../theme/cindy.module';
 
 import { SysRoutingModule, routedComponents } from './sys-routing.module';
 
@@ -8,7 +9,7 @@ const components = [
 ];
 
 @NgModule({
-    imports: [SysRoutingModule],
+    imports: [SysRoutingModule, CindyModule],
     declarations: [...routedComponents, ...components],
 })
 export class SysModule { }

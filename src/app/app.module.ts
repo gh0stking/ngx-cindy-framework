@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 
 import { PagesModule } from './pages/pages.module';
 import { AppRoutingModule } from './app-routing.module';
+import { ServicesModule } from './services/services.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AppRoutingModule } from './app-routing.module';
     CindyModule.forRoot(),
     AppRoutingModule,
     PagesModule,
+    ServicesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
