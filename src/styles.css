@@ -204,7 +204,7 @@ img, a, p, body, html, select, div, label, option, ul, li, dl, dd, span, input, 
     position: fixed;
     z-index: 800;
     height: 100%;
-    background-color: #323a57;
+    background-color: #42485B;
   }
   
   /*菜单激活颜色*/
@@ -253,7 +253,7 @@ img, a, p, body, html, select, div, label, option, ul, li, dl, dd, span, input, 
   }
   
   body .ui-accordion .ui-accordion-header:hover {
-    background-color: rgba(0, 0, 0, .5) !important;
+    background-color: #33cde5 !important;
     color: #FFFFFF !important;
   }
   

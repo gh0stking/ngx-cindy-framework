@@ -42,7 +42,7 @@ import { PAGES_MENU } from './pages.menu';
 })
 export class PagesComponent implements OnInit {
     isDisabled: boolean = true;
-    constructor(public router: Router) {
+    constructor(public router: Router, private route: ActivatedRoute) {
     };
 
     ngOnInit() {
@@ -86,7 +86,7 @@ export class PagesComponent implements OnInit {
 
     /************************* 退出登录 ********************************/
     loginOut() {
-        sessionStorage.removeItem('userToken');
-        this.router.navigateByUrl('login');
+        // sessionStorage.removeItem('userToken');
+        // this.router.navigateByUrl('login');
     }
 }

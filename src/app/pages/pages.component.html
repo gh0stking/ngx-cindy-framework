@@ -4,7 +4,7 @@
     </div>
     <ul style="float:right;margin-right:20px;">
         <li class="header-li">
-            <i class="fa fa-sign-out" style="cursor:pointer;"></i>
+            <i class="fa fa-sign-out" style="cursor:pointer;" (click)='loginOut()'></i>
         </li>
     </ul>
     <div style="clear:both"></div>
@@ -23,13 +23,13 @@
                 <div *ngIf="!pTooltipIf">
                     <li *ngFor="let children of item.children">
                         <i class="item-url fa" [ngClass]="children.icon" [@imgState]="state"></i>
-                        <a routerLink="{{children.path}}" routerLinkActive='active-link'>{{children.name}}</a>
+                        <a routerLink="{{item.path}}/{{children.path}}" routerLinkActive='active-link'>{{children.name}}</a>
                     </li>
                 </div>
                 <div *ngIf="pTooltipIf">
                     <li *ngFor="let children of item.children">
                         <i class="item-url fa" [ngClass]="children.icon" [@imgState]="state"></i>
-                        <a routerLink="{{children.path}}" routerLinkActive='active-link' pTooltip="{{children.name}}"></a>
+                        <a routerLink="{{item.path}}/{{children.path}}" routerLinkActive='active-link' pTooltip="{{children.name}}"></a>
                     </li>
                 </div>
             </ul>

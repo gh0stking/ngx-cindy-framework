@@ -1,13 +1,13 @@
 export const PAGES_MENU = [
     {
-        path: 'Dashboard',
-        name: '控制台',
+        path: 'dashboard',
+        name: '控制面板',
         icon: 'fa-dashboard'
     },
     {
-        path: 'specimen',
+        path: 'spe',
         name: '样本管理',
-        icon: 'fa-cog',
+        icon: 'fa-eyedropper',
         children: [
             {
                 path: 'register',

@@ -7,12 +7,13 @@ import { RouterModule } from '@angular/router';
 import { CindyModule } from './theme/cindy.module';
 
 import { AppComponent } from './app.component';
+
 import { PagesModule } from './pages/pages.module';
-import { routing } from './app.routing';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,8 +22,8 @@ import { routing } from './app.routing';
     HttpModule,
     RouterModule,
     CindyModule.forRoot(),
+    AppRoutingModule,
     PagesModule,
-    routing,
   ],
   providers: [],
   bootstrap: [AppComponent]
