@@ -9,7 +9,8 @@ import { MenuItem } from '../../common/menuitem';
             icon="{{icon}}" 
             [model]="model" 
             styleClass="{{styleClass}}" 
-            (onClick)='onClickEvent()'>
+            (onClick)='onClickEvent($event)'
+            (onDropdownClick)='onDropdownClickEvent($event)'>
         </p-splitButton>
     `
 })
@@ -19,9 +20,14 @@ export class CindySplitButton {
     @Input() model: MenuItem[];
     @Input() styleClass: string;
     @Output() onClick: EventEmitter<any> = new EventEmitter();
+    @Output() onDropdownClick: EventEmitter<any> = new EventEmitter();
 
-    onClickEvent() {
-        this.onClick.emit();
+    onClickEvent(event) {
+        this.onClick.emit(event);
+    }
+
+    onDropdownClickEvent(event) {
+        this.onDropdownClick.emit(event);
     }
 
 }
