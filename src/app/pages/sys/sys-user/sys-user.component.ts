@@ -19,10 +19,12 @@ import { SysUserModel } from '../../../domain/sys/sys-user.model';
 export class SysUserComponent implements OnInit {
     users: SysUserModel[];
     optButtons: MenuItem[];
+    conditions: QueryCondition[];
     user: SysUserModel;//当前操作的user对象
+    condition: SysUserModel;//查询条件
     displayAddDialog: boolean;
     displayModifyDialog: boolean;
-    displayConditionDialog: boolean;
+    displayCondition: boolean;
     constructor(
         private userService: SysUserService,
         private confirmDiagService: CindyConfirmationService,
@@ -31,7 +33,15 @@ export class SysUserComponent implements OnInit {
     ngOnInit() {
         // this.getUsers();
         this.initOptButtons();
+        this.initConditions();
         this.getMockUsers();
+    }
+
+    initConditions() {
+        this.conditions = [];
+        this.condition = new SysUserModel();
+        this.condition.Status = true;
+        this.condition.Name = "";
     }
 
     initOptButtons() {
@@ -61,8 +71,6 @@ export class SysUserComponent implements OnInit {
         );
     }
 
-
-
     getMockUsers() {
         this.userService.getMockUsers().subscribe(res => {
             console.log(res);
@@ -73,17 +81,12 @@ export class SysUserComponent implements OnInit {
     }
 
     getUsers() {
-        let conditions: QueryCondition[] = [
-            { table: 'Sys_User', field: 'Status', fieldType: 'String', condition: '=', value: '1' },
-            { table: 'Sys_User', field: 'Name', fieldType: 'String', condition: 'in', value: 'zhang' },
-        ];
-
         let sorts: QuerySort[] = [
             { table: 'Sys_User', field: 'Birth', isASC: false },
             { table: 'Sys_User', field: 'UserId', isASC: false },
         ];
 
-        this.userService.getListJson(conditions, sorts).subscribe(res => { });
+        this.userService.getListJson(this.conditions, sorts).subscribe(res => { });
     }
 
     refresh() {
@@ -91,7 +94,7 @@ export class SysUserComponent implements OnInit {
     }
 
     showConditionDialog() {
-        this.displayConditionDialog = true;
+        this.displayCondition = true;
     }
 
     showModifyDialog() {
@@ -142,5 +145,20 @@ export class SysUserComponent implements OnInit {
         this.displayModifyDialog = false;
     }
 
+    resetConditions() {
+        this.initConditions();
+    }
+
+    setConditions() {
+        this.displayCondition = false;
+
+        if (this.condition != null) {
+            this.conditions.push({ table: 'Sys_User', field: 'Status', fieldType: 'String', condition: '=', value: this.condition.Status.toString() });
+        }
+
+        if (this.condition.Name) {
+            this.conditions.push({ table: 'Sys_User', field: 'Name', fieldType: 'String', condition: 'in', value: this.condition.Name });
+        }
+    }
 
 }
