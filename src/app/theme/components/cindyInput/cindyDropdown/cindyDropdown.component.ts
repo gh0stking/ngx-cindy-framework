@@ -12,11 +12,31 @@ import {
     selector: 'c-dropdown',
     template: `
         <p-dropdown 
-            [options]="options" 
             [(ngModel)]="val" 
+            [options]="options" 
+            [scrollHeight]="scrollHeight" 
+            [style]="style" 
+            [panelStyle]="panelStyle" 
+            [styleClass]="styleClass" 
+            [panelStyleClass]="panelStyleClass" 
             [filter]="filter" 
-            (onChange)="onChangeEvent()" 
-            filterBy='{{filterBy}}'>
+            [filterBy]="filterBy" 
+            [filterPlaceholder]="filterPlaceholder" 
+            [autoWidth]="autoWidth" 
+            [required]="required" 
+            [disabled]="disabled" 
+            [editable]="editable" 
+            [appendTo]="appendTo" 
+            [tabindex]="tabindex" 
+            [placeholder]="placeholder" 
+            [inputId]="inputId" 
+            [dataKey]='dataKey'
+            [lazy]='lazy'
+            [autofocus]='autofocus'
+            [resetFilterOnHide]='resetFilterOnHide'
+            (onChange)="onChangeEvent($event)"
+            (onFocus)="onFocusEvent($event)"
+            (onBlur)="onBlurEvent($event)">
             <ng-content></ng-content>
         </p-dropdown>
     `,
@@ -28,10 +48,31 @@ import {
 })
 export class CindyDropdown extends ElementBase<string>{
     @ViewChild(NgModel) model: NgModel;
-    @Input() options: Array<any> = null;
-    @Input() filter: boolean = false;
+    @Input() options: Array<any>;
+    @Input() scrollHeight: string = "200px";
+    @Input() style: string;
+    @Input() panelStyle: string;
+    @Input() styleClass: string;
+    @Input() panelStyleClass: string;
+    @Input() filter: boolean;
     @Input() filterBy: string;
+    @Input() filterPlaceholder: string;
+    @Input() autoWidth: boolean = true;
+    @Input() required: boolean;
+    @Input() disabled: string;
+    @Input() editable: string;
+    @Input() appendTo: any;
+    @Input() tabindex: number;
+    @Input() placeholder: string;
+    @Input() inputId: string;
+    @Input() dataKey: string;
+    @Input() lazy: boolean = true;
+    @Input() autofocus: boolean;
+    @Input() resetFilterOnHide: boolean;
+
     @Output() onChange: EventEmitter<any> = new EventEmitter();
+    @Output() onFocus: EventEmitter<any> = new EventEmitter();
+    @Output() onBlur: EventEmitter<any> = new EventEmitter();
 
     constructor(
         @Optional() @Inject(NG_VALIDATORS) validators: Array<any>,
@@ -42,5 +83,13 @@ export class CindyDropdown extends ElementBase<string>{
 
     onChangeEvent() {
         this.onChange.emit();
+    }
+
+    onFocusEvent() {
+        this.onFocus.emit();
+    }
+
+    onBlurEvent() {
+        this.onBlur.emit();
     }
 }

@@ -6,5 +6,7 @@ export class SysUserModel {
     Sex: boolean;
     Birth: Date;
     Sort: number;
-    Status: string;
+    Status: boolean;
+    Addr?: string;
+    Note?: string;
 }

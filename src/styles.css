@@ -397,3 +397,35 @@ img, a, p, body, html, select, div, label, option, ul, li, dl, dd, span, input, 
   .ui-tabview-nav{
     border:0;
   }
+
+
+
+
+  /* my class */
+  .ui-button-text-icon-left .ui-button-text {
+    padding: .1em 1em .25em 2.1em !important;
+  }
+
+  .left{
+    text-align:left;
+  }
+
+  .right{
+    text-align:right;
+  }
+
+  .float-left{
+    float:left;
+  }
+
+  .float-right{
+    float:right;
+  }
+
+  .clear{
+    clear:both;
+  }
+
+  .margin-bottom-5{
+    margin-bottom:5px;
+  }

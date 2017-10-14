@@ -1,15 +1,39 @@
-<div style="margin-bottom:5px;">
-    <c-button label="导出Excel" icon="fa-file-excel-o" (click)="dt.exportCSV()"></c-button>
+<div class="margin-bottom-5">
+    <div class="float-left">
+        <c-button label="查询" icon="fa-search" (click)="showConditionDialog()"></c-button>
+    </div>
+    <div class="float-right">
+        <c-button label="刷新" icon="fa-refresh" (click)="refresh()"></c-button>
+        <c-splitButton label="更多" icon="fa-list" [model]="optButtons"></c-splitButton>
+    </div>
+    <div class="clear"></div>
 </div>
-<c-dataTable #dt [value]="users" [loading]="loading" [rows]="5" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]"
-    selectionMode="single" (onRowSelect)="handleRowSelect($event)" [editable]="true">
-    <c-header><strong>用户列表</strong></c-header>
-    <c-column field="UserId" header="用户编号"></c-column>
-    <c-column field="UserName" header="用户名"></c-column>
-    <c-column field="Name" header="姓名"></c-column>
-    <c-column field="Password" header="密码"></c-column>
-    <c-column field="Sex" header="性别"></c-column>
-    <c-column field="Birth" header="生日"></c-column>
-    <c-column field="Status" header="状态"></c-column>
-    <c-column header="操作"></c-column>
-</c-dataTable>
+
+<div>
+    <c-dataTable #dt [value]="users" [loading]="loading" [rows]="5" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]"
+        selectionMode="single" (onRowSelect)="handleRowSelect($event)" [editable]="true">
+        <c-header>
+            <strong>用户列表</strong>
+        </c-header>
+        <c-column field="UserId" header="用户编号"></c-column>
+        <c-column field="UserName" header="用户名"></c-column>
+        <c-column field="Name" header="姓名"></c-column>
+        <c-column field="Password" header="密码"></c-column>
+        <c-column field="Sex" header="性别"></c-column>
+        <c-column field="Birth" header="生日"></c-column>
+        <c-column field="Status" header="状态"></c-column>
+    </c-dataTable>
+</div>
+
+
+<!--弹窗-->
+<c-confirmDialog header="提示" icon="fa fa-question-circle" width="425"></c-confirmDialog>
+<c-dialog header="查询条件" [(visible)]="displayConditionDialog">
+    <sys-user-condition></sys-user-condition>
+</c-dialog>
+<c-dialog header="新增用户" [(visible)]="displayAddDialog" modal="modal" width="1000" height="600" [responsive]="true">
+    <sys-user-add (onSave)="onCloseAddDialog()" (onClose)="onCloseAddDialog()"></sys-user-add>
+</c-dialog>
+<c-dialog header="修改用户" [(visible)]="displayModifyDialog" modal="modal" width="1000" height="600" [responsive]="true">
+    <sys-user-modify [user]='user' (onSave)="onCloseModifyDialog()" (onClose)="onCloseModifyDialog()"></sys-user-modify>
+</c-dialog>

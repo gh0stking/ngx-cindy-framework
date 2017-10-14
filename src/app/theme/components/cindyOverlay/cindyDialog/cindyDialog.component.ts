@@ -45,7 +45,7 @@ export class CindyDialog {
     @Input() closeOnEscape: boolean = true;
     @Input() dismissableMask: boolean = false;
     @Input() rtl: boolean = false;
-    @Input() closable: boolean = false;
+    @Input() closable: boolean = true;
     @Input() responsive: boolean = true;
     @Input() breakpoint: number = 600;
     @Input() appendTo: any;
