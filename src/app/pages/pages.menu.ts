@@ -1,8 +1,15 @@
 export const PAGES_MENU = [
     {
-        path: 'dashboard',
+        path: '',
         name: '控制面板',
-        icon: 'fa-dashboard'
+        icon: 'fa-dashboard',
+        children:[
+            {
+                path: '/pages/dashboard',
+                name: '控制面板',
+                icon: 'fa-dashboard',
+            },
+        ]
     },
     {
         path: 'spe',
