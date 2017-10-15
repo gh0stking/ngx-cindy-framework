@@ -1,17 +1,19 @@
 <table width="100%" height="100%" *ngIf='user'>
     <tr>
-        <td width="33%">
+        <td width="50%">
             <div class="ui-g">
                 <label for="">用户名：</label>
                 <c-inputText [(ngModel)]='user.Name'></c-inputText>
             </div>
         </td>
-        <td width="33%">
+        <td width="50%">
             <div class="ui-g">
                 <label for="">密　码：</label>
                 <c-password [(ngModel)]='user.Password'></c-password>
             </div>
         </td>
+    </tr>
+    <tr>
         <td>
             <div class="ui-g">
                 <label for="">性　别：</label>
@@ -19,14 +21,14 @@
                 <c-radioButton [(ngModel)]='user.Sex' value="1" label="女"></c-radioButton>
             </div>
         </td>
-    </tr>
-    <tr>
         <td>
             <div class="ui-g">
                 <label for="">生　日：</label>
                 <c-calendar [(ngModel)]='user.Birth' showButtonBar='true' readonlyInput='true' showIcon='true'></c-calendar>
             </div>
         </td>
+    </tr>
+    <tr>
         <td>
             <div class="ui-g">
                 <label for="">状　态：</label>
@@ -47,7 +49,6 @@
                 <c-inputTextArea [(ngModel)]='user.Note' [rows]="5" [cols]="50" autoResize="true"></c-inputTextArea>
             </div>
         </td>
-        <td></td>
         <td></td>
     </tr>
 </table>
