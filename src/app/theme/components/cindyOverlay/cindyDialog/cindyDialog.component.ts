@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ContentChild } from '@angular/core';
+import { CindyHeader, CindyFooter } from '../../common/shared';
 
 @Component({
     selector: 'c-dialog',
@@ -27,12 +28,20 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
             [positionTop]='positionTop'
             (onShow)='onShowEvent()'
             (onHide)='onHideEvent()'>
+            <p-header *ngIf='cindyHeader'>
+                <ng-content select='c-header'></ng-content>
+            </p-header>
             <ng-content></ng-content>
+            <p-footer *ngIf='cindyFooter'>
+                <ng-content select='c-footer'></ng-content>
+            </p-footer>
         </p-dialog>
     `,
     styleUrls: ['./cindyDialog.component.scss']
 })
 export class CindyDialog {
+    @ContentChild(CindyHeader) cindyHeader;
+    @ContentChild(CindyFooter) cindyFooter;
     @Input() header: string;
     @Input() draggable: boolean = true;
     @Input() resizable: boolean = true;
