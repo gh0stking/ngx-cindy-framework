@@ -15,13 +15,13 @@
         <!-- <c-header>
             <strong>用户列表</strong>
         </c-header> -->
-        <c-column field="UserId" header="用户编号"></c-column>
-        <c-column field="UserName" header="用户名"></c-column>
-        <c-column field="Name" header="姓名"></c-column>
-        <c-column field="Password" header="密码"></c-column>
-        <c-column field="Sex" header="性别"></c-column>
-        <c-column field="Birth" header="生日"></c-column>
-        <c-column field="Status" header="状态"></c-column>
+        <c-column field="UserId" header="用户编号" [sortable]="true"></c-column>
+        <c-column field="UserName" header="用户名" [sortable]="true"></c-column>
+        <c-column field="Name" header="姓名" [sortable]="true"></c-column>
+        <c-column field="Password" header="密码" [sortable]="true"></c-column>
+        <c-column field="Sex" header="性别" [sortable]="true"></c-column>
+        <c-column field="Birth" header="生日" [sortable]="true"></c-column>
+        <c-column field="Status" header="状态" [sortable]="true"></c-column>
     </c-dataTable>
 </div>
 
@@ -60,7 +60,7 @@
 </c-sidebar>
 
 <!--弹窗-->
-<c-confirmDialog header="提示" icon="fa fa-question-circle" width="425"></c-confirmDialog>
+<c-confirmDialog header="提示" icon="fa fa-question-circle"></c-confirmDialog>
 <c-dialog header="新增用户" [(visible)]="displayAddDialog" modal="modal" width="800" height="600" [responsive]="true">
     <sys-user-add (onSave)="onCloseAddDialog()" (onClose)="onCloseAddDialog()"></sys-user-add>
 </c-dialog>

@@ -80,7 +80,7 @@ export class SysUserComponent implements OnInit {
         });
     }
 
-    getUsers() {
+    getListJson() {
         let sorts: QuerySort[] = [
             { table: 'Sys_User', field: 'Birth', isASC: false },
             { table: 'Sys_User', field: 'UserId', isASC: false },

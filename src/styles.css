@@ -430,3 +430,7 @@ img, a, p, body, html, select, div, label, option, ul, li, dl, dd, span, input, 
     margin-bottom:5px;
   }
 
+  .m-dialog{
+    width:500px;  
+  }
+
