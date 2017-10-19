@@ -1,56 +1,58 @@
-<div class="ui-g">
-    <div class="ui-g-6 form-group">
-        <div class="form-label">用户名：</div>
-        <div class="form-control">
-            <c-inputText [(ngModel)]='user.Name'></c-inputText>
+<div *ngIf='user'>
+    <div class='ui-g'>
+        <div class='ui-g-6 form-group'>
+            <div class='form-label'>用户名：</div>
+            <div class='form-control'>
+                <c-inputText [(ngModel)]='user.Name'></c-inputText>
+            </div>
+        </div>
+        <div class='ui-g-6 form-group'>
+            <div class='form-label'>密码：</div>
+            <div class='form-control'>
+                <c-password [(ngModel)]='user.Password'></c-password>
+            </div>
         </div>
     </div>
-    <div class="ui-g-6 form-group">
-        <div class="form-label">密码：</div>
-        <div class="form-control">
-            <c-password [(ngModel)]='user.Password'></c-password>
+    <div class='ui-g'>
+        <div class='ui-g-6 form-group'>
+            <div class='form-label'>性别：</div>
+            <div class='form-control'>
+                <c-radioButton [(ngModel)]='user.Sex' value='0' label='男'></c-radioButton>
+                <c-radioButton [(ngModel)]='user.Sex' value='1' label='女'></c-radioButton>
+            </div>
+        </div>
+        <div class='ui-g-6 form-group'>
+            <div class='form-label'>生日：</div>
+            <div class='form-control'>
+                <c-calendar [(ngModel)]='user.Birth' showButtonBar='true' readonlyInput='true' showIcon='true'></c-calendar>
+            </div>
         </div>
     </div>
-</div>
-<div class="ui-g">
-    <div class="ui-g-6 form-group">
-        <div class="form-label">性别：</div>
-        <div class="form-control">
-            <c-radioButton [(ngModel)]='user.Sex' value="0" label="男"></c-radioButton>
-            <c-radioButton [(ngModel)]='user.Sex' value="1" label="女"></c-radioButton>
+    <div class='ui-g'>
+        <div class='ui-g-6 form-group'>
+            <div class='form-label'>状态：</div>
+            <div class='form-control'>
+                <c-checkbox [(ngModel)]='user.Status' binary='true' label='有效'></c-checkbox>
+            </div>
+        </div>
+        <div class='ui-g-6 form-group'>
+            <div class='form-label'>住址：</div>
+            <div class='form-control'>
+                <c-dropdown [(ngModel)]='user.Addr' [options]='cities' [filter]='true' filterBy='label,value.name'></c-dropdown>
+            </div>
         </div>
     </div>
-    <div class="ui-g-6 form-group">
-        <div class="form-label">生日：</div>
-        <div class="form-control">
-            <c-calendar [(ngModel)]='user.Birth' showButtonBar='true' readonlyInput='true' showIcon='true'></c-calendar>
-        </div>
-    </div>
-</div>
-<div class="ui-g">
-    <div class="ui-g-6 form-group">
-        <div class="form-label">状态：</div>
-        <div class="form-control">
-            <c-checkbox [(ngModel)]='user.Status' binary="true" label="有效"></c-checkbox>
-        </div>
-    </div>
-    <div class="ui-g-6 form-group">
-        <div class="form-label">住址：</div>
-        <div class="form-control">
-            <c-dropdown [(ngModel)]='user.Addr' [options]='cities' [filter]='true' filterBy='label,value.name' [style]="{'width':'100px'}"></c-dropdown>
-        </div>
-    </div>
-</div>
-<div class="ui-g">
-    <div class="ui-g-6 form-group">
-        <div class="form-label">备注：</div>
-        <div class="form-label">
-            <c-inputTextArea [(ngModel)]='user.Note' [rows]="5" [cols]="60" autoResize="true"></c-inputTextArea>
+    <div class='ui-g'>
+        <div class='ui-g-6 form-group'>
+            <div class='form-label'>备注：</div>
+            <div class='form-label'>
+                <c-inputTextArea [(ngModel)]='user.Note' [rows]='5' [cols]='60' autoResize='true'></c-inputTextArea>
+            </div>
         </div>
     </div>
 </div>
 
-<div class="float-right">
-    <c-button label="保存" icon="fa-check" (click)="save()"></c-button>
-    <c-button label="退出" icon="fa-window-close" (click)="close()"></c-button>
+<div class='float-right'>
+    <c-button label='保存' icon='fa-check' (click)='save()'></c-button>
+    <c-button label='退出' icon='fa-window-close' (click)='close()'></c-button>
 </div>

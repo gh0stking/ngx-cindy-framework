@@ -1,26 +1,24 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, ErrorHandler, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { SysUserModel } from '../../../domain/sys/sys-user.model';
+import { SysUserService } from '../../../services/sys/sys-user.service';
 
 @Component({
     selector: 'sys-user-add',
     templateUrl: './sys-user-add.component.html'
 })
 export class SysUserAddComponent implements OnInit {
-    user: SysUserModel;
     cities: any[];
+    @Input() user: SysUserModel;
     @Output() onSave: EventEmitter<any> = new EventEmitter();
     @Output() onClose: EventEmitter<any> = new EventEmitter();
 
+    constructor(
+        private sysUserService: SysUserService,
+    ) { }
+
     ngOnInit() {
         this.getCities();
-        this.initUser();
-    }
-
-    initUser() {
-        this.user = new SysUserModel();
-        this.user.Status = true;
-        this.user.Sex = true;
     }
 
     getCities() {
@@ -31,7 +29,9 @@ export class SysUserAddComponent implements OnInit {
     }
 
     save() {
-        this.onSave.emit();
+        this.sysUserService.saveForm('', this.user).subscribe(res => {
+            this.onSave.emit(res.retCode);
+        });
     }
 
     close() {

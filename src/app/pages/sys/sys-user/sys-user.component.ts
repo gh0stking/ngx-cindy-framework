@@ -100,6 +100,7 @@ export class SysUserComponent implements OnInit {
     }
 
     showAddDialog() {
+        this.user = new SysUserModel();
         this.displayAddDialog = true;
     }
 

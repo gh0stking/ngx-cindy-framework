@@ -21,7 +21,7 @@
 
 <c-confirmDialog header='提示' icon='fa fa-question-circle'></c-confirmDialog>
 <c-dialog header='新增用户' [(visible)]='displayAddDialog' modal='modal' width='800' height='600' [responsive]='true'>
-    <sys-user-add (onSave)='onCloseAddDialog()' (onClose)='onCloseAddDialog()'></sys-user-add>
+    <sys-user-add [user]='user' (onSave)='onCloseAddDialog()' (onClose)='onCloseAddDialog()'></sys-user-add>
 </c-dialog>
 <c-dialog header='修改用户' [(visible)]='displayModifyDialog' modal='modal' width='800' height='600' [responsive]='true'>
     <sys-user-modify [user]='user' (onSave)='onCloseModifyDialog()' (onClose)='onCloseModifyDialog()'></sys-user-modify>
