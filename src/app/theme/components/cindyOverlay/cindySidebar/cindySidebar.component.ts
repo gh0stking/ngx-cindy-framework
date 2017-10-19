@@ -10,6 +10,7 @@ import { DomHandler } from 'primeng/primeng';
             'ui-sidebar-left': (position === 'left'), 'ui-sidebar-right': (position === 'right'),
             'ui-sidebar-top': (position === 'top'), 'ui-sidebar-bottom': (position === 'bottom'), 
             'ui-sidebar-full': fullScreen}"
+            style="width:500px"
             [@panelState]="visible ? 'visible' : 'hidden'" [ngStyle]="style" [class]="styleClass">
             <a [ngClass]="{'ui-sidebar-close ui-corner-all':true}" href="#" role="button" (click)="close($event)">
                 <span class="fa fa-fw fa-close"></span>

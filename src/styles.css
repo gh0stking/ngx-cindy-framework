@@ -439,12 +439,13 @@ img, a, p, body, html, select, div, label, option, ul, li, dl, dd, span, input, 
   }
 
   .form-label{
-    width:120px;
-    text-align:right;
     float:left;
+    width:20%;
+    text-align:right;
   }
 
   .form-control{
     float:left;
+    width:80%;
   }
 

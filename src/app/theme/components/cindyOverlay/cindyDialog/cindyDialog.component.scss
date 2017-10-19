@@ -1,3 +1,27 @@
 .ui-dialog-content{
     padding:0;
 }
+
+.cindy-header{
+    width:100%; 
+    height:100px; 
+    position:absolute;
+    top:0;
+}
+
+.cindy-content{
+    width:100%; 
+    height:auto; 
+    background:blue; 
+    position:absolute; 
+    top:100px; 
+    bottom:100px;
+}
+
+.cindy-footer{
+    width:100%; 
+    height:100px; 
+    background:gray; 
+    position:absolute; 
+    bottom:0;
+}

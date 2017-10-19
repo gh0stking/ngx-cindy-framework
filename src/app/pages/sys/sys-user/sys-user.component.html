@@ -27,32 +27,36 @@
 
 <!--查询条件组件-->
 <c-sidebar [(visible)]="displayCondition">
-    <h2 style="font-weight:normal">查询条件</h2>
-
+    <h2>查询条件</h2>
     <hr>
-
     <div>
-        <div class="ui-g">
-            <label for="">用户名：</label>
-            <c-inputText [(ngModel)]='condition.Name'></c-inputText>
+        <div class="form-group">
+            <div class="form-label">用户名：</div>
+            <div class="form-control">
+                <c-inputText [(ngModel)]='condition.Name'></c-inputText>
+            </div>
         </div>
-        <div class="ui-g">
-            <label for="">性　别：</label>
-            <c-radioButton [(ngModel)]='condition.Sex' value="0" label="男"></c-radioButton>
-            <c-radioButton [(ngModel)]='condition.Sex' value="1" label="女"></c-radioButton>
+        <div class="form-group">
+            <div class="form-label">性别：</div>
+            <div class="form-control">
+                <c-radioButton [(ngModel)]='condition.Sex' value="0" label="男"></c-radioButton>
+                <c-radioButton [(ngModel)]='condition.Sex' value="1" label="女"></c-radioButton>
+            </div>
         </div>
-        <div class="ui-g">
-            <label for="">生　日：</label>
-            <c-calendar [(ngModel)]='condition.Birth' showButtonBar='true' readonlyInput='true' showIcon='true' [inputStyle]="{'width':'162px'}"></c-calendar>
+        <div class="form-group">
+            <div class="form-label">生日：</div>
+            <div class="form-control">
+                <c-calendar [(ngModel)]='condition.Birth' showButtonBar='true' readonlyInput='true' showIcon='true' [inputStyle]="{'width':'162px'}"></c-calendar>
+            </div>
         </div>
-        <div class="ui-g">
-            <label for="">状　态：</label>
-            <c-checkbox [(ngModel)]='condition.Status' binary="true" label="有效"></c-checkbox>
+        <div class="form-group">
+            <div class="form-label">状态：</div>
+            <div class="form-control">
+                <c-checkbox [(ngModel)]='condition.Status' binary="true" label="有效"></c-checkbox>
+            </div>
         </div>
     </div>
-
     <br>
-
     <div class="float-right">
         <c-button label="重置" icon="fa-search" (click)="resetConditions()"></c-button>
         <c-button label="确定" icon="fa-search" (click)="setConditions()"></c-button>

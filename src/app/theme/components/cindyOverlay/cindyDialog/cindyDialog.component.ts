@@ -31,7 +31,7 @@ import { CindyHeader, CindyFooter } from '../../common/shared';
             <p-header *ngIf='cindyHeader'>
                 <ng-content select='c-header'></ng-content>
             </p-header>
-            <ng-content></ng-content>
+            <ng-content class="cindy-content"></ng-content>
             <p-footer *ngIf='cindyFooter'>
                 <ng-content select='c-footer'></ng-content>
             </p-footer>
