@@ -434,3 +434,17 @@ img, a, p, body, html, select, div, label, option, ul, li, dl, dd, span, input, 
     width:500px;  
   }
 
+  .form-group{
+    clear:both;
+  }
+
+  .form-label{
+    width:120px;
+    text-align:right;
+    float:left;
+  }
+
+  .form-control{
+    float:left;
+  }
+

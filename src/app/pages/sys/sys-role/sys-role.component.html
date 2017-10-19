@@ -1,1 +1,30 @@
-角色管理
+<div class="margin-bottom-5">
+    <div class="float-left">
+        <c-button label="查询" icon="fa-search" (click)="showConditionDialog()"></c-button>
+    </div>
+    <div class="float-right">
+        <c-button label="刷新" icon="fa-refresh" (click)="refresh()"></c-button>
+        <c-splitButton label="更多" icon="fa-list" [model]="optButtons"></c-splitButton>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<c-dataTable [value]="sysRoleList" [loading]="loading" [rows]="5" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[10,20,30]"
+    selectionMode="single" (onRowSelect)="sysRole=$event.data">
+    <c-column field="UserId" header="用户编号" [sortable]="true"></c-column>
+    <c-column field="UserName" header="用户名" [sortable]="true"></c-column>
+    <c-column field="Name" header="姓名" [sortable]="true"></c-column>
+    <c-column field="Password" header="密码" [sortable]="true"></c-column>
+    <c-column field="Sex" header="性别" [sortable]="true"></c-column>
+    <c-column field="Birth" header="生日" [sortable]="true"></c-column>
+    <c-column field="Status" header="状态" [sortable]="true"></c-column>
+</c-dataTable>
+
+<!--弹窗-->
+<c-confirmDialog header="提示" icon="fa fa-question-circle"></c-confirmDialog>
+<c-dialog header="新增用户" [(visible)]="displayAddDialog" modal="modal" width="800" height="600" [responsive]="true">
+    <sys-user-add (onSave)="onCloseAddDialog()" (onClose)="onCloseAddDialog()"></sys-user-add>
+</c-dialog>
+<c-dialog header="修改用户" [(visible)]="displayModifyDialog" modal="modal" width="800" height="600" [responsive]="true">
+    <sys-user-modify [user]='user' (onSave)="onCloseModifyDialog()" (onClose)="onCloseModifyDialog()"></sys-user-modify>
+</c-dialog>

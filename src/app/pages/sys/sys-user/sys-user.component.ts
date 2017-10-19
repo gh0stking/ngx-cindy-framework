@@ -88,7 +88,7 @@ export class SysUserComponent implements OnInit {
 
         this.userService.getListJson(this.conditions, sorts).subscribe(res => { });
     }
-
+    
     refresh() {
         this.getMockUsers();
     }
