@@ -1,5 +1,4 @@
 import { Component, ErrorHandler, OnInit } from '@angular/core';
-
 import { MenuItem } from '../../../theme/components/common/menuitem';
 import { CindyConfirmationService } from '../../../theme/services/cindyConfirmDialog/cindyConfirmation.service';
 
@@ -17,31 +16,32 @@ import { SysUserModel } from '../../../domain/sys/sys-user.model';
     styleUrls: ['./sys-user.component.scss']
 })
 export class SysUserComponent implements OnInit {
+    user: SysUserModel;
     users: SysUserModel[];
     optButtons: MenuItem[];
+    sorts: QuerySort[];
     conditions: QueryCondition[];
-    user: SysUserModel;//当前操作的user对象
-    condition: SysUserModel;//查询条件
+    conditionModel: SysUserModel;
+    displayCondition: boolean;
     displayAddDialog: boolean;
     displayModifyDialog: boolean;
-    displayCondition: boolean;
     constructor(
         private userService: SysUserService,
         private confirmDiagService: CindyConfirmationService,
     ) { }
 
     ngOnInit() {
-        // this.getUsers();
         this.initOptButtons();
         this.initConditions();
         this.getMockUsers();
+        // this.getListJson();
     }
 
     initConditions() {
         this.conditions = [];
-        this.condition = new SysUserModel();
-        this.condition.Status = true;
-        this.condition.Name = "";
+        this.conditionModel = new SysUserModel();
+        this.conditionModel.Status = true;
+        this.conditionModel.Name = "";
     }
 
     initOptButtons() {
@@ -50,23 +50,17 @@ export class SysUserComponent implements OnInit {
             {
                 label: '新增',
                 icon: 'fa-plus',
-                command: () => {
-                    this.showAddDialog();
-                }
+                command: () => { this.showAddDialog(); }
             },
             {
                 label: '修改',
                 icon: 'fa-pencil',
-                command: () => {
-                    this.showModifyDialog();
-                }
+                command: () => { this.showModifyDialog(); }
             },
             {
                 label: '删除',
                 icon: 'fa-trash',
-                command: () => {
-                    this.delete();
-                }
+                command: () => { this.delete(); }
             },
         );
     }
@@ -81,14 +75,14 @@ export class SysUserComponent implements OnInit {
     }
 
     getListJson() {
-        let sorts: QuerySort[] = [
-            { table: 'Sys_User', field: 'Birth', isASC: false },
-            { table: 'Sys_User', field: 'UserId', isASC: false },
-        ];
-
-        this.userService.getListJson(this.conditions, sorts).subscribe(res => { });
+        // let sorts: QuerySort[] = [
+        //     { table: 'Sys_User', field: 'Birth', isASC: false },
+        //     { table: 'Sys_User', field: 'UserId', isASC: false },
+        // ];
+        this.setConditions();
+        this.userService.getListJson(this.conditions, this.sorts).subscribe(res => { });
     }
-    
+
     refresh() {
         this.getMockUsers();
     }
@@ -99,10 +93,7 @@ export class SysUserComponent implements OnInit {
 
     showModifyDialog() {
         if (!this.user) {
-            this.confirmDiagService.confirm({
-                message: '请选择要编辑的数据',
-                icon: 'fa fa-warning'
-            });
+            this.confirmDiagService.confirm({ message: '请选择要编辑的数据', icon: 'fa fa-warning' });
         } else {
             this.displayModifyDialog = true;
         }
@@ -113,28 +104,15 @@ export class SysUserComponent implements OnInit {
     }
 
     delete() {
-        if (this.user) {
+        if (!this.user) {
+            this.confirmDiagService.confirm({ message: '请选择要删除的数据', icon: 'fa fa-warning' });
+        } else {
             this.confirmDiagService.confirm({
                 rejectVisible: true,
                 message: '确定要删除吗？',
-                accept: () => {
-                    console.log('删除成功！');
-                    this.refresh();
-                },
-                reject: () => {
-                    console.log('删除失败');
-                }
-            });
-        } else {
-            this.confirmDiagService.confirm({
-                message: '请选择要删除的数据',
-                icon: 'fa fa-warning'
+                accept: () => { this.refresh(); }
             });
         }
-    }
-
-    handleRowSelect(event) {
-        this.user = event.data;
     }
 
     onCloseAddDialog() {
@@ -151,13 +129,8 @@ export class SysUserComponent implements OnInit {
 
     setConditions() {
         this.displayCondition = false;
-
-        if (this.condition != null) {
-            this.conditions.push({ table: 'Sys_User', field: 'Status', fieldType: 'String', condition: '=', value: this.condition.Status.toString() });
-        }
-
-        if (this.condition.Name) {
-            this.conditions.push({ table: 'Sys_User', field: 'Name', fieldType: 'String', condition: 'in', value: this.condition.Name });
+        if (this.conditionModel.Name) {
+            this.conditions.push({ table: 'Sys_User', field: 'Name', fieldType: 'String', condition: 'in', value: this.conditionModel.Name });
         }
     }
 

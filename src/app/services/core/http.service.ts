@@ -151,10 +151,10 @@ export class PageSet {
     /**
      * 每页记录数
      */
-    PageSize: number;
+    PageSize: number = 10;
 
     /**
      * 当前页码
      */
-    PageIndex: number;
+    PageIndex: number = 1;
 }

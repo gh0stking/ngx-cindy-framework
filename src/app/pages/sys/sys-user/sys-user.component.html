@@ -1,73 +1,65 @@
-<div class="margin-bottom-5">
-    <div class="float-left">
-        <c-button label="查询" icon="fa-search" (click)="showConditionDialog()"></c-button>
+<div class='margin-bottom-5'>
+    <div class='float-left'>
+        <c-button label='查询' icon='fa-search' (click)='showConditionDialog()'></c-button>
     </div>
-    <div class="float-right">
-        <c-button label="刷新" icon="fa-refresh" (click)="refresh()"></c-button>
-        <c-splitButton label="更多" icon="fa-list" [model]="optButtons"></c-splitButton>
+    <div class='float-right'>
+        <c-button label='刷新' icon='fa-refresh' (click)='refresh()'></c-button>
+        <c-splitButton label='更多' icon='fa-list' [model]='optButtons'></c-splitButton>
     </div>
-    <div class="clear"></div>
+    <div class='clear'></div>
 </div>
 
-<div>
-    <c-dataTable #dt [value]="users" [loading]="loading" [rows]="5" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]"
-        selectionMode="single" (onRowSelect)="user = $event.data" [editable]="true">
-        <!-- <c-header>
-            <strong>用户列表</strong>
-        </c-header> -->
-        <c-column field="UserId" header="用户编号" [sortable]="true"></c-column>
-        <c-column field="UserName" header="用户名" [sortable]="true"></c-column>
-        <c-column field="Name" header="姓名" [sortable]="true"></c-column>
-        <c-column field="Password" header="密码" [sortable]="true"></c-column>
-        <c-column field="Sex" header="性别" [sortable]="true"></c-column>
-        <c-column field="Birth" header="生日" [sortable]="true"></c-column>
-        <c-column field="Status" header="状态" [sortable]="true"></c-column>
-    </c-dataTable>
-</div>
+<c-dataTable #dt [value]='users' [loading]='loading' [rows]='5' [paginator]='true' [pageLinks]='5' [rowsPerPageOptions]='[10,20,30]' selectionMode='single' (onRowSelect)='user = $event.data'>
+    <c-column field='UserId' header='用户编号' [sortable]='true'></c-column>
+    <c-column field='UserName' header='用户名' [sortable]='true'></c-column>
+    <c-column field='Name' header='姓名' [sortable]='true'></c-column>
+    <c-column field='Password' header='密码' [sortable]='true'></c-column>
+    <c-column field='Sex' header='性别' [sortable]='true'></c-column>
+    <c-column field='Birth' header='生日' [sortable]='true'></c-column>
+    <c-column field='Status' header='状态' [sortable]='true'></c-column>
+</c-dataTable>
 
-<!--查询条件组件-->
-<c-sidebar [(visible)]="displayCondition">
+<c-confirmDialog header='提示' icon='fa fa-question-circle'></c-confirmDialog>
+<c-dialog header='新增用户' [(visible)]='displayAddDialog' modal='modal' width='800' height='600' [responsive]='true'>
+    <sys-user-add (onSave)='onCloseAddDialog()' (onClose)='onCloseAddDialog()'></sys-user-add>
+</c-dialog>
+<c-dialog header='修改用户' [(visible)]='displayModifyDialog' modal='modal' width='800' height='600' [responsive]='true'>
+    <sys-user-modify [user]='user' (onSave)='onCloseModifyDialog()' (onClose)='onCloseModifyDialog()'></sys-user-modify>
+</c-dialog>
+
+<c-sidebar [(visible)]='displayCondition'>
     <h2>查询条件</h2>
     <hr>
     <div>
-        <div class="form-group">
-            <div class="form-label">用户名：</div>
-            <div class="form-control">
-                <c-inputText [(ngModel)]='condition.Name'></c-inputText>
+        <div class='form-group'>
+            <div class='form-label'>用户名：</div>
+            <div class='form-control'>
+                <c-inputText [(ngModel)]='conditionModel.Name'></c-inputText>
             </div>
         </div>
-        <div class="form-group">
-            <div class="form-label">性别：</div>
-            <div class="form-control">
-                <c-radioButton [(ngModel)]='condition.Sex' value="0" label="男"></c-radioButton>
-                <c-radioButton [(ngModel)]='condition.Sex' value="1" label="女"></c-radioButton>
+        <div class='form-group'>
+            <div class='form-label'>性别：</div>
+            <div class='form-control'>
+                <c-radioButton [(ngModel)]='conditionModel.Sex' value='0' label='男'></c-radioButton>
+                <c-radioButton [(ngModel)]='conditionModel.Sex' value='1' label='女'></c-radioButton>
             </div>
         </div>
-        <div class="form-group">
-            <div class="form-label">生日：</div>
-            <div class="form-control">
-                <c-calendar [(ngModel)]='condition.Birth' showButtonBar='true' readonlyInput='true' showIcon='true' [inputStyle]="{'width':'162px'}"></c-calendar>
+        <div class='form-group'>
+            <div class='form-label'>生日：</div>
+            <div class='form-control'>
+                <c-calendar [(ngModel)]='conditionModel.Birth' showButtonBar='true' readonlyInput='true' showIcon='true'></c-calendar>
             </div>
         </div>
-        <div class="form-group">
-            <div class="form-label">状态：</div>
-            <div class="form-control">
-                <c-checkbox [(ngModel)]='condition.Status' binary="true" label="有效"></c-checkbox>
+        <div class='form-group'>
+            <div class='form-label'>状态：</div>
+            <div class='form-control'>
+                <c-checkbox [(ngModel)]='conditionModel.Status' binary='true' label='有效'></c-checkbox>
             </div>
         </div>
     </div>
     <br>
-    <div class="float-right">
-        <c-button label="重置" icon="fa-search" (click)="resetConditions()"></c-button>
-        <c-button label="确定" icon="fa-search" (click)="setConditions()"></c-button>
+    <div class='float-right'>
+        <c-button label='重置' icon='fa-retweet' (click)='resetConditions()'></c-button>
+        <c-button label='确定' icon='fa-search' (click)='setConditions()'></c-button>
     </div>
 </c-sidebar>
-
-<!--弹窗-->
-<c-confirmDialog header="提示" icon="fa fa-question-circle"></c-confirmDialog>
-<c-dialog header="新增用户" [(visible)]="displayAddDialog" modal="modal" width="800" height="600" [responsive]="true">
-    <sys-user-add (onSave)="onCloseAddDialog()" (onClose)="onCloseAddDialog()"></sys-user-add>
-</c-dialog>
-<c-dialog header="修改用户" [(visible)]="displayModifyDialog" modal="modal" width="800" height="600" [responsive]="true">
-    <sys-user-modify [user]='user' (onSave)="onCloseModifyDialog()" (onClose)="onCloseModifyDialog()"></sys-user-modify>
-</c-dialog>

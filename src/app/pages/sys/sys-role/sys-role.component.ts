@@ -19,7 +19,7 @@ export class SysRoleComponent implements OnInit {
     conditions: QueryCondition[];
     conditionModel: SysRoleModel;
     sorts: QuerySort[];
-    pageSet: PageSet;
+    pageSet: PageSet = new PageSet();
     sysRoleList: SysRoleModel[];
     optButtons: MenuItem[];
     sysRole: SysRoleModel;
